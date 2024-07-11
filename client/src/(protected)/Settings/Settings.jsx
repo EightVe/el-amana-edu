@@ -1,9 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
 import { motion } from 'framer-motion';
 import { Card } from "@/components/ui/card";
 import { Bell, Lock, LucideSettings, User } from 'lucide-react';
 import AccountSessions from './components/AccountSessions';
+import CustomLink from '@/hooks/CustomLink';
+import { Link } from 'react-router-dom';
 
 const Settings = () => {
   return (
@@ -26,7 +28,7 @@ const Settings = () => {
           Edit and manage everything as you want.
         </motion.p>
         <div className="grid gap-4 mt-4 sm:grid-cols-1 lg:grid-cols-4">
-          <Link to="/settings/profile">
+          <CustomLink to="/settings/profile">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -42,8 +44,8 @@ const Settings = () => {
                 </div>
               </Card>
             </motion.div>
-          </Link>
-          <Link to="/settings/account">
+          </CustomLink>
+          <CustomLink to="/settings/account">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -59,8 +61,8 @@ const Settings = () => {
                 </div>
               </Card>
             </motion.div>
-          </Link>
-          <Link to="/settings/security">
+          </CustomLink>
+          <CustomLink to="/settings/security">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -76,7 +78,7 @@ const Settings = () => {
               </div>
             </Card>
           </motion.div>
-          </Link>
+          </CustomLink>
         </div>
       </section>
       <section className="mt-8">

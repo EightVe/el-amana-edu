@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, CircleX, TriangleAlert } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
+import CustomLink from '@/hooks/CustomLink';
 
 const containerVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -35,13 +35,13 @@ const AccountSettings = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.5 }}
       >
-        <Link to="/settings">
+        <CustomLink to="/settings">
           <div className="flex items-center space-x-2">
             <ArrowLeft className="w-6 h-6 text-gray-700" />
             <h1 className="text-lg font-semibold">Settings</h1>
             <span className="text-sm text-gray-500">| View all settings</span>
           </div>
-        </Link>
+        </CustomLink>
       </motion.header>
       <motion.section
         className="mt-8"

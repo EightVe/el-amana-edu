@@ -1,0 +1,85 @@
+import axios from 'axios';
+import Cookies from 'js-cookie';
+
+const axiosInstance = axios.create({
+  baseURL: '/api',
+  withCredentials: true,
+});
+
+let isRefreshing = false;
+let failedQueue = [];
+
+const processQueue = (error, token = null) => {
+  failedQueue.forEach(prom => {
+    if (error) {
+      prom.reject(error);
+    } else {
+      prom.resolve(token);
+    }
+  });
+
+  failedQueue = [];
+};
+
+axiosInstance.interceptors.response.use(
+  response => response,
+  async error => {
+    const { config, response: { status } = {} } = error;
+    const originalRequest = config;
+
+    console.log('Error status:', status);
+
+    if (status === 401) {
+      if (originalRequest.url.includes('/auth/refresh-token')) {
+        console.log('Token refresh failed, redirecting to login');
+        //window.location.href = '/login';
+        return Promise.reject(error);
+      }
+
+      if (!originalRequest._retry) {
+        console.log('401 error detected, handling token refresh');
+        if (isRefreshing) {
+          return new Promise((resolve, reject) => {
+            failedQueue.push({ resolve, reject });
+          })
+            .then(token => {
+              originalRequest.headers['Authorization'] = 'Bearer ' + token;
+              return axiosInstance(originalRequest);
+            })
+            .catch(err => {
+              console.log('Error after token refresh attempt:', err);
+              return Promise.reject(err);
+            });
+        }
+
+        originalRequest._retry = true;
+        isRefreshing = true;
+
+        return new Promise((resolve, reject) => {
+          axiosInstance
+            .post('/auth/refresh-token', {}, { withCredentials: true })
+            .then(({ data }) => {
+              console.log('Token refreshed successfully');
+              axiosInstance.defaults.headers['Authorization'] = 'Bearer ' + data.accessToken;
+              originalRequest.headers['Authorization'] = 'Bearer ' + data.accessToken;
+              processQueue(null, data.accessToken);
+              resolve(axiosInstance(originalRequest));
+            })
+            .catch(err => {
+              console.log('Token refresh failed, redirecting to login');
+              processQueue(err, null);
+              //window.location.href = '/login';
+              reject(err);
+            })
+            .finally(() => {
+              isRefreshing = false;
+            });
+        });
+      }
+    }
+
+    return Promise.reject(error);
+  }
+);
+
+export default axiosInstance;

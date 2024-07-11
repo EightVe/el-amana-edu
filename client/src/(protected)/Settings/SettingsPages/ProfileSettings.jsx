@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, CircleX, Edit, TriangleAlert } from 'lucide-react';
+import { ArrowLeft, AtSign, CircleX, Edit, Tag, TriangleAlert } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
+import { LoadingSpinner } from '@/lib/LoadingSpinner';
+import { AuthContext } from '@/contexts/AuthContext';
+import CustomLink from '@/hooks/CustomLink';
 
 const containerVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -27,6 +29,7 @@ const itemVariants = {
 
 const ProfileSettings = () => {
   const [isEditing, setIsEditing] = useState(false);
+  const {user} = useContext(AuthContext)
 
   return (
     <div className="min-h-screen p-4 md:p-8">
@@ -36,13 +39,13 @@ const ProfileSettings = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.5 }}
       >
-        <Link to="/settings">
+        <CustomLink to="/settings">
           <div className="flex items-center space-x-2">
             <ArrowLeft className="w-6 h-6 text-gray-700" />
             <h1 className="text-lg font-semibold">Settings</h1>
             <span className="text-sm text-gray-500">| View all settings</span>
           </div>
-        </Link>
+        </CustomLink>
       </motion.header>
       <motion.section
         className="mt-8"
@@ -68,8 +71,8 @@ const ProfileSettings = () => {
                 <div className='flex items-center gap-3'>
                   <div className='h-12 w-12 rounded-full bg-black'></div>
                   <div>
-                    <div className='flex items-center gap-1'><Label>Jhon</Label><Label>Doe</Label></div>
-                    <p className="text-gray-500 text-sm">Istanbul, Turkey</p>
+                    <div className='flex items-center gap-1'><Label>{user.firstName}</Label><Label>{user.lastName}</Label></div>
+                    <p className="text-gray-500 text-sm">{user.city || "Unknown"}, {user.country || "Unknown"}</p>
                   </div>
                 </div>
                 <div><Button size="sm" className="rounded-full">Change Picture</Button></div>
@@ -94,25 +97,42 @@ const ProfileSettings = () => {
                     <div className="flex items-center gap-4 pt-2">
                       <div className="w-full">
                         <Label htmlFor="firstName" className="text-xs text-gray-500">First Name</Label>
-                        <Input id="firstName" name="firstName" type="text" placeholder="Jhon" />
+                        <Input id="firstName" name="firstName" type="text" placeholder={user.firstName}/>
                       </div>
                       <div className="w-full">
                         <Label htmlFor="lastName" className="text-xs text-gray-500">Last Name</Label>
-                        <Input id="lastName" name="lastName" type="text" placeholder="Doe" />
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-4 pt-2">
-                      <div className="w-full">
-                        <Label htmlFor="country" className="text-xs text-gray-500">Country</Label>
-                        <Input id="country" name="country" type="text" disabled value="Istanbul" className="bg-gray-200"/>
-                      </div>
-                      <div className="w-full">
-                        <Label htmlFor="city" className="text-xs text-gray-500">City</Label>
-                        <Input id="city" name="city" type="text" disabled value="Turkey" className="bg-gray-200"/>
+                        <Input id="lastName" name="lastName" type="text" placeholder={user.lastName} />
                       </div>
                       
                     </div>
-                    <p className='flex items-center gap-1 text-gray-500 text-xs pt-1'><TriangleAlert className='h-4 w-4'/> You cannot change city and country.</p>
+                    <Separator className="mt-4"/>
+                    <p className='flex items-center gap-1 text-gray-500 text-xs pt-3'><TriangleAlert className='h-4 w-4'/>The following informations cannot be updated.</p>
+                    <div className="w-full bg-gray-100 p-2 rounded-md mt-2">
+                        <Label htmlFor="lastName" className="text-xs text-gray-500">Username</Label>
+                        <div className="relative">
+        <Input 
+          type="text" 
+          value={user.username}
+          className="pl-10" 
+          disabled
+        />
+        <AtSign className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+      </div>
+                      </div>
+
+                    <div className="flex items-center gap-4 pt-2 bg-gray-100 p-2 rounded-md mt-2">
+                      <div className="w-full">
+                        <Label htmlFor="country" className="text-xs text-gray-500">Country</Label>
+                        <Input id="country" name="country" type="text" disabled value="Istanbul"/>
+                      </div>
+                      <div className="w-full">
+                        <Label htmlFor="city" className="text-xs text-gray-500">City</Label>
+                        <Input id="city" name="city" type="text" disabled value="Turkey"/>
+                      </div>
+                      
+                    </div>
+                    
+                    <Separator className="mt-4"/>
                     <div className="flex items-center gap-4 pt-2">
                       <div className="w-full">
                         <Label htmlFor="phoneNumber" className="text-xs text-gray-500">Phone Number</Label>
@@ -139,32 +159,32 @@ const ProfileSettings = () => {
                     <div className="flex items-center gap-4 pt-2">
                       <div className="w-full">
                         <Label className="text-xs text-gray-500">First Name</Label>
-                        <p className="text-sm font-medium flex justify-between text-gray-600 items-center">Jhon</p>
+                        <p className="text-sm font-medium flex justify-between text-gray-600 items-center">{user.firstName}</p>
                       </div>
                       <div className="w-full">
                         <Label className="text-xs text-gray-500">Last Name</Label>
-                        <p className="text-sm font-medium flex justify-between text-gray-600 items-center">Doe</p>
+                        <p className="text-sm font-medium flex justify-between text-gray-600 items-center">{user.lastName}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 pt-2">
                       <div className="w-full">
-                        <Label className="text-xs text-gray-500">Country</Label>
-                        <p className="text-sm font-medium flex justify-between text-gray-600 items-center">Istanbul</p>
+                        <Label className="text-xs text-gray-500">City</Label>
+                        <p className="text-sm font-medium flex justify-between text-gray-600 items-center">{user.city || "Unknown"}</p>
                       </div>
                       <div className="w-full">
-                        <Label className="text-xs text-gray-500">City</Label>
-                        <p className="text-sm font-medium flex justify-between text-gray-600 items-center">Turkey</p>
+                        <Label className="text-xs text-gray-500">Country</Label>
+                        <p className="text-sm font-medium flex justify-between text-gray-600 items-center">{user.country || "Unknown"}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 pt-2">
                       <div className="w-full">
                         <Label className="text-xs text-gray-500">Phone Number</Label>
-                        <p className="text-sm font-medium flex justify-between text-gray-600 items-center">+9056716238</p>
+                        <p className="text-sm font-medium flex justify-between text-gray-600 items-center">{user.phoneNumber || "Unknown"}</p>
                       </div>
                     </div>
                     <div>
                 <Label className="flex items-center justify-between mt-6">Bio</Label>
-                <p className="text-sm text-gray-500 mt-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure voluptate, natus animi ex magnam unde quas, voluptatum sapiente nam autem saepe tenetur sed! Alias illo sit, quisquam sed assumenda voluptate!</p>
+                <p className="text-sm text-gray-500 mt-1">{user.bio || "No Bio Provided"}</p>
                 </div>
                   </motion.div>
                 )}
