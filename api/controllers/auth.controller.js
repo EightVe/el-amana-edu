@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import jwt from 'jsonwebtoken';
 import bcryptjs from "bcryptjs";
+import Session from "../models/session.model.js";
 
 const generateAccessToken = (user) => {
   return jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '2m' });
@@ -27,11 +28,19 @@ export const login = async (req, res, next) => {
   const { emailAddress, password } = req.body;
 
   try {
+
+
     const user = await User.findOne({ emailAddress });
-    if (!user) return res.status(404).json({ message: 'User not found' });
+    if (!user) {
+
+      return res.status(404).json({ message: 'User not found' });
+    }
 
     const isPasswordCorrect = await bcryptjs.compare(password, user.password);
-    if (!isPasswordCorrect) return res.status(400).json({ message: 'Invalid credentials' });
+    if (!isPasswordCorrect) {
+
+      return res.status(400).json({ message: 'Invalid credentials' });
+    }
 
     const accessToken = generateAccessToken(user);
     const refreshToken = generateRefreshToken(user);
@@ -39,11 +48,35 @@ export const login = async (req, res, next) => {
     user.refreshToken = refreshToken;
     await user.save();
 
+
+
+    // Add session after successful login
+    await Session.updateMany({ userId: user._id, isCurrent: true }, { isCurrent: false });
+
+    const newSession = new Session({
+      userId: user._id,
+      ip: user.ip,
+      city: user.city,
+      country: user.country,
+      org: user.org,
+      postal: user.postal,
+      version: user.version,
+      network: user.network,
+      country_capital: user.country_capital,
+      userAgent: req.headers['user-agent'],
+      isCurrent: true, // Mark this session as current
+    });
+
+    await newSession.save();
+
+
+
     res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 2 * 60 * 1000 });
     res.cookie('refreshToken', refreshToken, { httpOnly: true, maxAge: 7 * 24 * 60 * 60 * 1000 });
 
-    res.status(200).json({ message: 'Logged in successfully' });
+    res.status(200).json({ message: 'Logged in successfully', token: accessToken, refreshToken, user });
   } catch (error) {
+    console.error('Error during login process:', error);
     next(error);
   }
 };
@@ -93,11 +126,6 @@ export const logout = (req, res) => {
 
 export const defaultLocationDetection = async (req, res, next) => {
   const { userId, city, country_name, ip, org, postal, version, network, country_capital } = req.body;
-  
-  console.log('Received ID:', userId);
-  console.log('Received City:', city);
-  console.log('Received Country:', country_name);
-  
   try {
     const user = await User.findById(userId);
     if (!user) {

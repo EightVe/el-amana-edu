@@ -25,19 +25,13 @@ const UserAvatar = () => {
   <AvatarImage src={user?.avatar} className="object-cover h-8 w-8"/>
   <AvatarFallback>CN</AvatarFallback>
 </Avatar>
-<div>
-  <h3 className='font-medium text-gray-500 text-sm flex items-center gap-1 capitalize'>
-   <Label>{user?.firstName}</Label>
-  <Label>{user?.lastName}</Label>
-  </h3>
-</div>
-<div>
-  <ChevronDown  className='h-4 w-4 text-gray-500'/>
-</div>
   </div>
 </DropdownMenuTrigger>
-  <DropdownMenuContent>
-    <DropdownMenuLabel>Menu</DropdownMenuLabel>
+  <DropdownMenuContent className="lg:mr-0 mr-4">
+    <DropdownMenuLabel className="flex items-center gap-1 capitalize">
+   <Label>{user?.firstName}</Label>
+  <Label>{user?.lastName}</Label>
+  </DropdownMenuLabel>
     <DropdownMenuSeparator />
     <a href="/profile">    <DropdownMenuItem className="flex items-center gap-1.5 text-sm mb-1"><User className='text-gray-500 h-4 w-4'/>Profile</DropdownMenuItem></a>
     <a href="/settings">    <DropdownMenuItem className="flex items-center gap-1.5 text-sm mb-1"><SettingsIcon className='text-gray-500 h-4 w-4'/>Settings</DropdownMenuItem></a>

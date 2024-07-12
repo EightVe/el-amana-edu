@@ -6,6 +6,14 @@ import { Bell, Lock, LucideSettings, User } from 'lucide-react';
 import AccountSessions from './components/AccountSessions';
 import CustomLink from '@/hooks/CustomLink';
 import { Link } from 'react-router-dom';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 const Settings = () => {
   return (
@@ -97,9 +105,18 @@ const Settings = () => {
           transition={{ delay: 0.8, duration: 0.3 }}
         >
           View your account sessions.{' '}
-          <Link to="#" className="text-blue-600">
-            Learn more!
-          </Link>
+          <Dialog>
+  <DialogTrigger className='text-blue-500'>Learn more!</DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>What Are Sessions?</DialogTitle>
+      <DialogDescription>
+      Our session management feature provides a clear overview of all active sessions associated with your account. When you log in, a session is created to keep you securely connected. If someone else logs into your account from a different device or location, you will be able to see that session listed as well. This allows you to monitor any unauthorized access to your account and take immediate action if needed. You can easily identify and manage active sessions, including the ability to delete any session that you do not recognize. This ensures your account remains secure and gives you control over who has access to your information.
+      </DialogDescription>
+    </DialogHeader>
+  </DialogContent>
+</Dialog>
+<p className='text-red-400 text-xs'>Deleting a session will result immediately logging out that session.</p>
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

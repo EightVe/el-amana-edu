@@ -32,11 +32,12 @@ const LoginForm = () => {
         toast.error(response.data.message || "An Error Occurred");
         return;
       }
-      const { user } = response.data;
-      setUser(user); // Set user context
+      const { token, refreshToken, user } = response.data;
+      setUser(user);
+      axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       setLoading(false);
+      window.location.href = "/";
       toast.success("Welcome Back!");
-      window.location.href="/"
     } catch (error) {
       setLoading(false);
       toast.error(error.response?.data?.message || "An Error Occurred");

@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Login from "./(public)/Login/Login";
 import Home from "./(public)/Home/Home";
 import Register from "./(public)/Register/Register";
@@ -15,49 +15,54 @@ import { AuthProvider } from "./contexts/AuthContext";
 import AdminRoute from "./lib/AdminRoute";
 import NavigationBar from "./components/general/NavigationBar";
 
-const App = () => (
-  <>
-    <Toaster position="top-center" />
-    <AuthProvider>
-      <NavigationBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/profile" element={
-          <ProtectedRoute>
-            <Profile />
-          </ProtectedRoute>
-        } />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Register />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/settings" element={
-          <ProtectedRoute>
-            <Settings />
-          </ProtectedRoute>
-        } />
-        <Route path="/settings/profile" element={
-          <ProtectedRoute>
-            <ProfileSettings />
-          </ProtectedRoute>
-        } />
-        <Route path="/settings/account" element={
-          <ProtectedRoute>
-            <AccountSettings />
-          </ProtectedRoute>
-        } />
-        <Route path="/settings/security" element={
-          <ProtectedRoute>
-            <SecuritySettings />
-          </ProtectedRoute>
-        } />
-        <Route path="/dashboard" element={
-          <AdminRoute>
-            <Dashboard />
-          </AdminRoute>
-        } />
-      </Routes>
-    </AuthProvider>
-  </>
-);
+const App = () => {
+  const location = useLocation();
+  const hideNavigationBar = ['/login', '/signup', '/forgot-password'].includes(location.pathname);
+
+  return (
+    <>
+      <Toaster position="top-center" />
+      <AuthProvider>
+        {!hideNavigationBar && <NavigationBar />}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/profile" element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          } />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/settings" element={
+            <ProtectedRoute>
+              <Settings />
+            </ProtectedRoute>
+          } />
+          <Route path="/settings/profile" element={
+            <ProtectedRoute>
+              <ProfileSettings />
+            </ProtectedRoute>
+          } />
+          <Route path="/settings/account" element={
+            <ProtectedRoute>
+              <AccountSettings />
+            </ProtectedRoute>
+          } />
+          <Route path="/settings/security" element={
+            <ProtectedRoute>
+              <SecuritySettings />
+            </ProtectedRoute>
+          } />
+          <Route path="/dashboard" element={
+            <AdminRoute>
+              <Dashboard />
+            </AdminRoute>
+          } />
+        </Routes>
+      </AuthProvider>
+    </>
+  );
+};
 
 export default App;

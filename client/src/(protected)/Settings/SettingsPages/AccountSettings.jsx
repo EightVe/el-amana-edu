@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, CircleX, TriangleAlert } from 'lucide-react';
@@ -6,6 +6,7 @@ import { Separator } from '@/components/ui/separator';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import CustomLink from '@/hooks/CustomLink';
+import { AuthContext } from '@/contexts/AuthContext';
 
 const containerVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -26,7 +27,7 @@ const itemVariants = {
 
 const AccountSettings = () => {
   const [isEditingEmail, setIsEditingEmail] = useState(false);
-
+  const {user} = useContext(AuthContext)
   return (
     <div className="min-h-screen p-4 md:p-8">
       <motion.header 
@@ -91,7 +92,7 @@ const AccountSettings = () => {
                   exit={{ opacity: 0, height: 0 }}
                 >
                   <p className="text-sm flex justify-between text-gray-600 items-center">
-                    hfjsh@gmail.com <Button type="button" size="sm" variant="ghost" onClick={() => setIsEditingEmail(true)}>Change</Button>
+                    {user.emailAddress} <Button type="button" size="sm" variant="ghost" onClick={() => setIsEditingEmail(true)}>Change</Button>
                   </p>
                 </motion.div>
               )}
