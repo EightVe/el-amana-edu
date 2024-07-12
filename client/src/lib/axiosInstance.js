@@ -27,17 +27,17 @@ axiosInstance.interceptors.response.use(
     const { config, response: { status } = {} } = error;
     const originalRequest = config;
 
-    console.log('Error status:', status);
+
 
     if (status === 401) {
       if (originalRequest.url.includes('/auth/refresh-token')) {
-        console.log('Token refresh failed, redirecting to login');
+      
         //window.location.href = '/login';
         return Promise.reject(error);
       }
 
       if (!originalRequest._retry) {
-        console.log('401 error detected, handling token refresh');
+     
         if (isRefreshing) {
           return new Promise((resolve, reject) => {
             failedQueue.push({ resolve, reject });
@@ -47,7 +47,7 @@ axiosInstance.interceptors.response.use(
               return axiosInstance(originalRequest);
             })
             .catch(err => {
-              console.log('Error after token refresh attempt:', err);
+             
               return Promise.reject(err);
             });
         }
@@ -59,14 +59,14 @@ axiosInstance.interceptors.response.use(
           axiosInstance
             .post('/auth/refresh-token', {}, { withCredentials: true })
             .then(({ data }) => {
-              console.log('Token refreshed successfully');
+              
               axiosInstance.defaults.headers['Authorization'] = 'Bearer ' + data.accessToken;
               originalRequest.headers['Authorization'] = 'Bearer ' + data.accessToken;
               processQueue(null, data.accessToken);
               resolve(axiosInstance(originalRequest));
             })
             .catch(err => {
-              console.log('Token refresh failed, redirecting to login');
+           
               processQueue(err, null);
               //window.location.href = '/login';
               reject(err);

@@ -89,3 +89,34 @@ export const logout = (req, res) => {
   res.clearCookie('refreshToken');
   res.status(200).json({ message: 'Logged out successfully' });
 };
+
+
+export const defaultLocationDetection = async (req, res, next) => {
+  const { userId, city, country_name, ip, org, postal, version, network, country_capital } = req.body;
+  
+  console.log('Received ID:', userId);
+  console.log('Received City:', city);
+  console.log('Received Country:', country_name);
+  
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    user.city = city;
+    user.country = country_name;
+    user.ip = ip;
+    user.org = org;
+    user.postal = postal;
+    user.version = version;
+    user.network = network;
+    user.country_capital = country_capital;
+
+    await user.save();
+    res.json({ message: 'Geolocation saved successfully' });
+  } catch (err) {
+    console.log('Error saving geolocation:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};

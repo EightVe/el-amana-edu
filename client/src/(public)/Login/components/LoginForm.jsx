@@ -36,8 +36,7 @@ const LoginForm = () => {
       setUser(user); // Set user context
       setLoading(false);
       toast.success("Welcome Back!");
-      navigate('/');
-      window.location.reload()
+      window.location.href="/"
     } catch (error) {
       setLoading(false);
       toast.error(error.response?.data?.message || "An Error Occurred");

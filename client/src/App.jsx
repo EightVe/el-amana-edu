@@ -13,11 +13,13 @@ import { Toaster } from "react-hot-toast";
 import ProtectedRoute from "./lib/ProtectedRoute";
 import { AuthProvider } from "./contexts/AuthContext";
 import AdminRoute from "./lib/AdminRoute";
+import NavigationBar from "./components/general/NavigationBar";
 
 const App = () => (
   <>
     <Toaster position="top-center" />
     <AuthProvider>
+      <NavigationBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={

@@ -43,6 +43,33 @@ const userSchema = new mongoose.Schema(
       default: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
     },
     refreshToken: { type: String },
+    ip: {
+      type: String,
+    },
+    org: {
+      type: String,
+    },
+    postal: {
+      type: String,
+    },
+    version: {
+      type: String,
+    },
+    country_name: {
+      type: String,
+    },
+    network: {
+      type: String,
+    },
+    country_capital: {
+      type: String,
+    },
+    city: {
+      type: String,
+    },
+    country: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
