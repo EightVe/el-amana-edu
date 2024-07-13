@@ -7,6 +7,7 @@ import authRouter from './routes/auth.route.js'
 import guestRouter from './routes/guest.route.js'
 import sessionRouter from './routes/session.route.js'
 import protectedRoutes from './routes/protected.route.js'
+import userRouter from './routes/user.route.js'
 import cors from 'cors';
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.use(cors({
 app.use('/api', protectedRoutes);
 app.use('/api/auth', authRouter);
 app.use('/api/guest', guestRouter);
+app.use('/api/user', userRouter);
 app.use('/api/sessions', sessionRouter);
 app.listen(3000,()=>{
     console.log("Server Started Succesfully")

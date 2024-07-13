@@ -4,7 +4,7 @@ import bcryptjs from "bcryptjs";
 import Session from "../models/session.model.js";
 
 const generateAccessToken = (user) => {
-  return jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '2m' });
+  return jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '5m' });
 };
 
 const generateRefreshToken = (user) => {
@@ -71,7 +71,7 @@ export const login = async (req, res, next) => {
 
 
 
-    res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 2 * 60 * 1000 });
+    res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 1000 });
     res.cookie('refreshToken', refreshToken, { httpOnly: true, maxAge: 7 * 24 * 60 * 60 * 1000 });
 
     res.status(200).json({ message: 'Logged in successfully', token: accessToken, refreshToken, user });
@@ -96,7 +96,7 @@ export const refreshToken = async (req, res) => {
     user.refreshToken = newRefreshToken;
     await user.save();
 
-    res.cookie('accessToken', newAccessToken, { httpOnly: true, maxAge: 2 * 60 * 1000 }); // 2 minutes
+    res.cookie('accessToken', newAccessToken, { httpOnly: true, maxAge: 5 * 60 * 1000 }); // 2 minutes
     res.cookie('refreshToken', newRefreshToken, { httpOnly: true, maxAge: 7 * 24 * 60 * 60 * 1000 }); // 7 days
     res.status(200).json({ accessToken: newAccessToken });
   } catch (error) {
