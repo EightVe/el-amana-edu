@@ -3,6 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { AuthContext } from '@/contexts/AuthContext';
 import { LoadingSpinner } from './LoadingSpinner';
 import toast from 'react-hot-toast';
+import EmailVerify from '@/functions/EmailVerify';
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
@@ -15,6 +16,7 @@ const ProtectedRoute = ({ children }) => {
     toast.error("Unauthorized, Please Log In.")
     return <Navigate to="/login" />;
   }
+
 
   return children;
 };

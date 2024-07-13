@@ -63,9 +63,11 @@ const AccountSessions = () => {
               <h3 className="text-sm font-semibold">{new Date(session.createdAt).toLocaleString()}</h3>
               <p className="text-xs text-gray-600">{session.userAgent}</p>
               <Separator className="mt-1"/>
-              <p className="text-xs pt-1">{session.city}, {session.country}</p>
-              <p className="text-xs">IP Address : {session.ip}</p>
-              <p className="text-xs">{session.network} | ({session.version}) | {session.org}</p>
+              {session?.city&& session?.country && (<p className="text-xs pt-1">{session?.city}, {session?.country}</p>)}
+              
+              {session?.ip && (   <p className="text-xs">IP Address : {session.ip}</p> )} 
+              {session?.network && session?.org && session?.version && ( <p className="text-xs">{session.network} | ({session.version}) | {session.org}</p>)}
+             
             </div>
           </div>
           {!session.isCurrent && (

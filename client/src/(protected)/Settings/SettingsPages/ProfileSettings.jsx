@@ -222,11 +222,11 @@ const ProfileSettings = () => {
                       <div className="flex items-center gap-4 pt-2 bg-gray-100 p-2 rounded-md mt-2">
                         <div className="w-full">
                           <Label htmlFor="country" className="text-xs text-gray-500">Country</Label>
-                          <Input id="country" name="country" type="text" disabled value="Istanbul"/>
+                          <Input id="country" name="country" type="text" disabled value={user.city}/>
                         </div>
                         <div className="w-full">
                           <Label htmlFor="city" className="text-xs text-gray-500">City</Label>
-                          <Input id="city" name="city" type="text" disabled value="Turkey"/>
+                          <Input id="city" name="city" type="text" disabled value={user.country}/>
                         </div>
                       </div>
                       <Separator className="mt-4"/>
