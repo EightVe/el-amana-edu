@@ -4,7 +4,6 @@ import bcryptjs from "bcryptjs";
 import Session from "../models/session.model.js";
 import OTP  from "../models/otp.model.js";
 import nodemailer from 'nodemailer';
-
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation, matchPath } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider, AuthContext } from '@/contexts/AuthContext';
 import ProtectedRoute from './lib/ProtectedRoute';
@@ -17,12 +17,16 @@ import Dashboard from './(protected)/Dashboard/Dashboard';
 import Profile from './(protected)/Profile/Profile';
 import EmailVerify from '@/functions/EmailVerify';
 import { LoadingSpinner } from './lib/LoadingSpinner';
+import NewPassword from './(public)/ForgotPassword/NewPassword';
 
 const AppContent = () => {
   const location = useLocation();
-  const hideNavigationBar = ['/login', '/signup', '/forgot-password', '/verify-email'].includes(location.pathname);
-  const { user, loading } = useContext(AuthContext);
+  const hideNavigationBarPaths = ['/login', '/signup', '/forgot-password', '/verify-email'];
 
+  const hideNavigationBar = hideNavigationBarPaths.includes(location.pathname) || 
+    matchPath('/reset-password/:token', location.pathname);
+
+  const { user, loading } = useContext(AuthContext);
   if (loading) {
     return (
       <div className='h-screen w-full z-50 fixed top-0 flex justify-center items-center bg-white'>
@@ -48,6 +52,7 @@ const AppContent = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<NewPassword />} />
         <Route path="/settings" element={
           <ProtectedRoute>
             <Settings />

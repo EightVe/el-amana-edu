@@ -74,6 +74,8 @@ const userSchema = new mongoose.Schema(
     country: {
       type: String,
     },
+    resetPasswordToken: { type: String, default: null },
+    resetPasswordExpires: { type: Date, default: null },
   },
   { timestamps: true }
 );
