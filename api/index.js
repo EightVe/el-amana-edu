@@ -25,7 +25,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: 'http://localhost:5173', // Ensure this matches your Vite server
+  origin: process.env.APP_ORIGIN, // Ensure this matches your Vite server
   credentials: true,
 }));
 

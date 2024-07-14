@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import SEO from '@/lib/SEO';
 import { Button } from '@/components/ui/button';
 import RegisterForm from './components/RegisterForm';
+import WebBanner from '@/imgs/jsx/WebBanner';
+import WebLogo from '@/imgs/jsx/WebLogo';
 
 const Register = () => {
   return (
@@ -22,7 +24,7 @@ const Register = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1>Logo</h1>
+            <WebLogo />
           </motion.div>
           <motion.div 
             className=''
@@ -55,8 +57,9 @@ const Register = () => {
           </motion.div>
         </div>
         <div 
-          className='bg-black/30 h-screen w-full rounded-tl-3xl rounded-bl-3xl hidden lg:block'
+          className='h-screen w-full rounded-tl-3xl rounded-bl-3xl hidden lg:block'
         >
+          <WebBanner />
         </div>
       </div>
     </>

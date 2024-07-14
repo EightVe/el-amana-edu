@@ -7,6 +7,8 @@ import { Input } from '@/components/ui/input';
 import { Lock } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { LoadingSpinner } from '@/lib/LoadingSpinner';
+import WebBanner from '@/imgs/jsx/WebBanner';
+import WebLogo from '@/imgs/jsx/WebLogo';
 
 const NewPassword = () => {
   const [newPassword, setNewPassword] = useState('');
@@ -54,7 +56,7 @@ const NewPassword = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1>Logo</h1>
+            <WebLogo />
           </motion.div>
           <motion.div 
             className=''
@@ -103,8 +105,9 @@ const NewPassword = () => {
           </motion.div>
         </div>
         <div 
-          className='bg-black/30 h-screen w-full rounded-tl-3xl rounded-bl-3xl hidden lg:block'
+          className='h-screen w-full rounded-tl-3xl rounded-bl-3xl hidden lg:block'
         >
+          <WebBanner />
         </div>
       </div>
     </>

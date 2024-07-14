@@ -6,6 +6,7 @@ import UserAvatar from '../avatar/UserAvatar';
 import { LoadingSpinner } from '@/lib/LoadingSpinner';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import WebLogo from '@/imgs/jsx/WebLogo';
 
 const NavigationBar = () => {
     const { user, loading } = useContext(AuthContext);
@@ -20,7 +21,7 @@ const NavigationBar = () => {
             <div className="w-full max-w-7xl mx-auto px-4">
                 <div className="flex justify-between h-14 items-center">
                     <Link to="/" className="flex items-center">
-                        <span>Acme Inc</span>
+                    <WebLogo />
                     </Link>
                     <div className="hidden md:flex gap-4">
                         <Link

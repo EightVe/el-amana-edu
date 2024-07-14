@@ -8,6 +8,8 @@ import { CheckCircle, Mail } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import toast from 'react-hot-toast';
 import { LoadingSpinner } from '@/lib/LoadingSpinner';
+import WebBanner from '@/imgs/jsx/WebBanner';
+import WebLogo from '@/imgs/jsx/WebLogo';
 
 const ForgotPassword = () => {
   const [emailAddress, setEmailAddress] = useState('');
@@ -57,7 +59,7 @@ const ForgotPassword = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1>Logo</h1>
+           <WebLogo />
           </motion.div>
           {emailAddressSent ? <motion.div 
             className=''
@@ -140,8 +142,9 @@ const ForgotPassword = () => {
           </motion.div>
         </div>
         <div 
-          className='bg-black/30 h-screen w-full rounded-tl-3xl rounded-bl-3xl hidden lg:block'
+          className='h-screen w-full rounded-tl-3xl rounded-bl-3xl hidden lg:block'
         >
+          <WebBanner />
         </div>
       </div>
     </>

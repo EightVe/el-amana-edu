@@ -228,7 +228,7 @@ export const forgotPassword = async (req, res) => {
     user.resetPasswordExpires = resetTokenExpiry;
     await user.save();
 
-    const resetUrl = `https://eightve-auth.onrender.com/reset-password/${resetToken}`; // Update for production
+    const resetUrl = `${process.env.APP_ORIGIN}/reset-password/${resetToken}`; // Update for production
     const emailTemplate = generateResetEmailTemplate(resetUrl);
 
     await transporter.sendMail({
