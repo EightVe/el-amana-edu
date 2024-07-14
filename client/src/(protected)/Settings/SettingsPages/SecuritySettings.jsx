@@ -43,9 +43,9 @@ const SecuritySettings = () => {
       });
 
       setTwoFactorEnabled(!twoFactorEnabled);
-      toast.success('Success', {
-        id: loadingToastId,
-      });
+  
+      
+      window.location.reload();
     } catch (error) {
       toast.error('Session expired please refresh the page.', {
         id: loadingToastId,

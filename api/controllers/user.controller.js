@@ -94,3 +94,24 @@ export const disableTwoFac = async (req, res) => {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
+
+export const deleteAccount = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const userToDelete = await User.findById(userId);
+
+    if (!userToDelete) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    if (userToDelete.id !== userId) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    await User.findByIdAndDelete(userId);
+
+    res.status(200).json({ message: 'Account deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};

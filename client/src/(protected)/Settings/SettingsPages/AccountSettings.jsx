@@ -10,6 +10,16 @@ import { AuthContext } from '@/contexts/AuthContext';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { LoadingSpinner } from '@/lib/LoadingSpinner';
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 const containerVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -22,8 +32,9 @@ const AccountSettings = () => {
   const [isEditingEmail, setIsEditingEmail] = useState(false);
   const [formData, setFormData] = useState({ emailAddress: '', currentPassword: '', newPassword: '' });
   const [loading, setLoading] = useState(false);
-  const { user,setUser } = useContext(AuthContext);
+  const { user,setUser,logout  } = useContext(AuthContext);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -55,7 +66,17 @@ const AccountSettings = () => {
     }
     setLoading(false);
   };
-
+  const handleDeleteAccount = async () => {
+    setDeleting(true);
+    try {
+      await axios.post('/api/user/delete-account');
+      toast.success('Account deleted successfully');
+      logout(); // Perform logout after account deletion
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'An error occurred');
+    }
+    setDeleting(false);
+  };
   return (
     <div className="min-h-screen p-4 md:p-8">
       <motion.header
@@ -178,9 +199,34 @@ const AccountSettings = () => {
               <TriangleAlert className="text-red-400 h-5 w-5" /> Delete Account
             </Label>
             <p className="text-gray-500 text-sm">Once you delete your account we can't bring it back!</p>
-            <Button size="sm" variant="destructive" className="mt-2 w-full">
+<Dialog>
+<DialogTrigger className='w-full'> <Button size="sm" variant="destructive" className="mt-2 w-full" >
+             
+             Delete Account
+           </Button></DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Are you absolutely sure?</DialogTitle>
+          <DialogDescription>
+          Once you delete your account we wont be able to bring it back again!
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <div className="w-full flex items-center justify-between">
+          <DialogClose asChild>
+            <Button type="button" variant="secondary">
+              Close
+            </Button>
+          </DialogClose>
+        <Button size="sm" variant="destructive" className="" onClick={handleDeleteAccount} disabled={deleting}>
+              {deleting && <LoadingSpinner className="mr-2 h-4 w-4 animate-spin" />}
               Delete Account
             </Button>
+
+          </div>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
           </motion.div>
         </motion.div>
       </motion.section>
