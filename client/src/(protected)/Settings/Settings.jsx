@@ -115,7 +115,6 @@ const Settings = () => {
     </DialogHeader>
   </DialogContent>
 </Dialog>
-<p className='text-red-400 text-xs'>Deleting a session will result immediately logging out that session.</p>
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -65,3 +65,32 @@ export const editAccount = async (req, res) => {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
+export const enableTwoFac = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const updatedUser = await User.findByIdAndUpdate(userId, { twoFactorEnabled: true }, { new: true });
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.status(200).json({ message: 'Two-Factor Authentication enabled', user: updatedUser });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+
+export const disableTwoFac = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const updatedUser = await User.findByIdAndUpdate(userId, { twoFactorEnabled: false }, { new: true });
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.status(200).json({ message: 'Two-Factor Authentication disabled', user: updatedUser });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
