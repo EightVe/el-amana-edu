@@ -68,7 +68,7 @@ const NewPassword = () => {
               <h1 className='text-3xl font-medium text-center'>Reset Password</h1>
               <p className='text-sm text-gray-500'>Please enter your new password!</p>
             </div>
-            <div className='lg:px-32 px-14'>
+            <div className='lg:px-32 px-4'>
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <div className="relative">
                   <Input  disabled={loading} id="newPassword" type="password" placeholder="New Password" className="pl-10" onChange={(e) => setNewPassword(e.target.value)} value={newPassword} />

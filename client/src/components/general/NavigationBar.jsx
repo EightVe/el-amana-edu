@@ -6,7 +6,7 @@ import UserAvatar from '../avatar/UserAvatar';
 import { LoadingSpinner } from '@/lib/LoadingSpinner';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import WebLogo from '@/imgs/jsx/WebLogo';
+import WebLogo from '@/imgs/WebLogo2.png';
 
 const NavigationBar = () => {
     const { user, loading } = useContext(AuthContext);
@@ -18,10 +18,10 @@ const NavigationBar = () => {
 
     return (
         <nav className="inset-x-0 top-0 z-50 bg-white shadow-sm dark:bg-gray-950/90">
-            <div className="w-full max-w-7xl mx-auto px-4">
+            <div className="w-full max-w-full mx-auto px-4 ">
                 <div className="flex justify-between h-14 items-center">
                     <Link to="/" className="flex items-center">
-                    <WebLogo />
+                    logoeeeeeeeee
                     </Link>
                     <div className="hidden md:flex gap-4">
                         <Link
@@ -34,13 +34,13 @@ const NavigationBar = () => {
                             to="#"
                             className="font-medium flex items-center text-sm transition-colors hover:underline"
                         >
-                            About
+                            Universities
                         </Link>
                         <Link
                             to="#"
                             className="font-medium flex items-center text-sm transition-colors hover:underline"
                         >
-                            Services
+                            Application Status
                         </Link>
                         <Link
                             to="#"

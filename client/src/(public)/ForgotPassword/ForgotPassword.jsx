@@ -103,7 +103,7 @@ const ForgotPassword = () => {
               <h1 className='text-3xl font-medium text-center'>Reset Password</h1>
               <p className='text-sm text-gray-500'>Forgot your password? No worries, we got you!</p>
             </div>
-            <div className='lg:px-32 px-14'>
+            <div className='lg:px-32 px-4'>
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <div className="relative mb-2">
                   <Input id="emailAddress" type="email" placeholder="Email address" className="pl-10" value={emailAddress} disabled={loading}

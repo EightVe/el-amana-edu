@@ -36,7 +36,7 @@ const Login = () => {
               <h1 className='text-3xl font-medium text-center'>Welcome Back</h1>
               <p className='text-sm text-gray-500'>Sign in to your account</p>
             </div>
-            <div className='lg:px-32 px-14'>
+            <div className='lg:px-32 px-4'>
               <LoginForm />
             </div>
             <div className="flex items-center justify-center gap-2 pt-3">

@@ -1,9 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton+SC&display=swap');
+.paragfont{
+    font-family: "Bona Nova SC", serif;
+}
+.fontone{
+  font-family: "Anton SC", sans-serif;
+}
+
+.nav-blur {
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+
+}
+.blur-bg {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* For Safari support */
+}
+.headlogo {
+  mix-blend-mode: difference !important; /* You can try other blend modes like 'overlay', 'difference', etc. */
+  -webkit-font-smoothing: antialiased;
+}
 @tailwind base;
   @tailwind components;
   @tailwind utilities;
 *{
   outline: none;
 }
+
   @layer base {
     :root {
       --background: 0 0% 100%;
@@ -15,7 +38,7 @@
       --popover: 0 0% 100%;
       --popover-foreground: 222.2 84% 4.9%;
 
-      --primary: 222.2 47.4% 11.2%;
+      --primary: 213, 94%, 68%;
       --primary-foreground: 210 40% 98%;
 
       --secondary: 210 40% 96.1%;
