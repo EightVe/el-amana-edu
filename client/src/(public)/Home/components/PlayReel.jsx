@@ -15,8 +15,8 @@ const PlayReel = () => {
     target: targetRef,
   });
 
-  const scaleHeight = useTransform(scrollYProgress, [0, 1], [300, window.innerHeight]);
-  const scaleWidth = useTransform(scrollYProgress, [0, 1], [200, window.innerWidth]);
+  const scaleHeight = useTransform(scrollYProgress, [0, 1], [200, window.innerHeight]);
+  const scaleWidth = useTransform(scrollYProgress, [0, 1], [400, window.innerWidth]);
   const playX = useTransform(scrollYProgress, [0, 0.5], ["0%", "-100%"]);
   const reelX = useTransform(scrollYProgress, [0, 0.5], ["0%", "100%"]);
   const textOpacity = useTransform(scrollYProgress, [0.3, 0.5], [1, 0]);
@@ -68,14 +68,14 @@ const PlayReel = () => {
   };
 
   return (
-    <div className="">
+    <div className="bg-[#aaaa9b]">
       <section ref={targetRef} className="relative h-[300vh]">
         <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden gap-5 flex-col lg:flex-row">
           <motion.h1
             style={{ x: playX, opacity: textOpacity }}
-            className="text-white fontone uppercase text-5xl lg:text-9xl"
+            className="text-white paragfont uppercase text-5xl lg:text-9xl"
           >
-            play
+            * play
           </motion.h1>
           <motion.div
             style={{ height: scaleHeight, width: scaleWidth }}
@@ -99,16 +99,16 @@ const PlayReel = () => {
           </motion.div>
           <motion.h1
             style={{ x: reelX, opacity: textOpacity }}
-            className="text-white fontone uppercase text-5xl lg:text-9xl"
+            className="text-white  paragfont uppercase text-5xl lg:text-9xl"
           >
-            reel
+            reel *
           </motion.h1>
         </div>
       </section>
       <AnimatePresence>
         {showVideo && (
           <motion.div
-            className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#aaaa9b]"
+            className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#aaaa9b] "
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -149,7 +149,7 @@ const PlayReel = () => {
                   max={videoDuration}
                   value={sliderValue}
                   onChange={handleSliderChange}
-                  className="w-[850px] appearance-none bg-transparent slider"
+                  className="w-[300px] lg:w-[850px] appearance-none bg-transparent slider"
                 />
               </motion.div>
               <motion.button

@@ -1,6 +1,6 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Route, Routes, useLocation, matchPath } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import { AuthProvider, AuthContext } from '@/contexts/AuthContext';
 import ProtectedRoute from './lib/ProtectedRoute';
 import AdminRoute from './lib/AdminRoute';
@@ -16,42 +16,22 @@ import SecuritySettings from './(protected)/Settings/SettingsPages/SecuritySetti
 import Dashboard from './(protected)/Dashboard/Dashboard';
 import Profile from './(protected)/Profile/Profile';
 import EmailVerify from '@/functions/EmailVerify';
+import { LoadingSpinner } from './lib/LoadingSpinner';
 import NewPassword from './(public)/ForgotPassword/NewPassword';
-import NavBar from './components/general/NavBar';
-
-import { AnimatePresence } from 'framer-motion';
-import HomePageLoading from './components/general/LoadingPage/HomePageLoading';
 
 const AppContent = () => {
   const location = useLocation();
-  const hideNavigationBarPaths = ['/login', '/signup', '/forgot-password', '/verify-email', '/'];
-  const hideNavigationBar = hideNavigationBarPaths.includes(location.pathname) || matchPath('/reset-password/:token', location.pathname);
+  const hideNavigationBarPaths = ['/login', '/signup', '/forgot-password', '/verify-email','/'];
+
+  const hideNavigationBar = hideNavigationBarPaths.includes(location.pathname) || 
+    matchPath('/reset-password/:token', location.pathname);
 
   const { user, loading } = useContext(AuthContext);
-  const [animationComplete, setAnimationComplete] = useState(false);
-  const [fetchingComplete, setFetchingComplete] = useState(false);
-
-  useEffect(() => {
-    if (!loading) {
-      setFetchingComplete(true);
-    }
-  }, [loading]);
-
-  useEffect(() => {
-    if (!loading && !user) {
-      toast.error("Unauthorized, Please Log In.");
-    }
-  }, [loading, user]);
-
-  const handleComplete = () => {
-    setAnimationComplete(true);
-  };
-
-  if (!animationComplete || !fetchingComplete) {
+  if (loading) {
     return (
-      <AnimatePresence>
-        <HomePageLoading onComplete={handleComplete} />
-      </AnimatePresence>
+      <div className='h-screen w-full z-50 fixed top-0 flex justify-center items-center bg-white'>
+        <LoadingSpinner className="h-6 w-6 animate-spin" />
+      </div>
     );
   }
 

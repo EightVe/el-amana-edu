@@ -1,6 +1,6 @@
 import React from 'react';
 import BannerVid from "@/vids/Banner.mp4";
-import "../../../../index.css"
+import "../../../index.css"
 import { motion } from 'framer-motion';
 
 const Banner = () => {
