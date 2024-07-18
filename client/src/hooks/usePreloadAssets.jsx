@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
-const usePreloadAssets = (assets) => {
+const usePreloadAssets = (assets, onProgress) => {
   const [loaded, setLoaded] = useState(false);
   const loadCountRef = useRef(0);
   const totalAssetsRef = useRef(assets.length);
@@ -10,6 +10,7 @@ const usePreloadAssets = (assets) => {
 
     const checkLoaded = () => {
       loadCountRef.current += 1;
+      onProgress(loadCountRef.current); // Update progress
       console.log(`Loaded ${loadCountRef.current} of ${totalAssets} assets`);
       if (loadCountRef.current === totalAssets) {
         setLoaded(true);
@@ -44,7 +45,7 @@ const usePreloadAssets = (assets) => {
         loadAsset(asset);
       });
     }
-  }, [assets]);
+  }, [assets, onProgress]);
 
   return loaded;
 };
