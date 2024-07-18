@@ -21,12 +21,21 @@ const usePreloadAssets = (assets) => {
         const img = new Image();
         img.src = asset;
         img.onload = checkLoaded;
-        img.onerror = checkLoaded;
+        img.onerror = () => {
+          console.error(`Failed to load image: ${asset}`);
+          checkLoaded();
+        };
       } else if (asset.endsWith('.mp4') || asset.endsWith('.webm')) {
         const video = document.createElement('video');
         video.src = asset;
         video.onloadeddata = checkLoaded;
-        video.onerror = checkLoaded;
+        video.onerror = () => {
+          console.error(`Failed to load video: ${asset}`);
+          checkLoaded();
+        };
+      } else {
+        console.error(`Unsupported asset type: ${asset}`);
+        checkLoaded();
       }
     };
 
