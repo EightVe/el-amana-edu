@@ -29,7 +29,7 @@ const OurServices = () => {
             style={{ x: splitDistanceLeft }}
             className="text-white paragfont uppercase text-5xl lg:text-9xl"
           >
-           * serv
+           serv
           </motion.h1>
           <motion.div
             style={{
@@ -44,11 +44,11 @@ const OurServices = () => {
             style={{ x: splitDistanceRight }}
             className="text-white paragfont uppercase text-5xl lg:text-9xl"
           >
-            ices *
+            ices
           </motion.h1>
         </div>
       </section>
-      <section className="bg-white h-auto py-12 px-6">
+      <section className="bg-white h-auto py-12 pt-[50vh] px-6">
         <div ref={section1Ref} className="md:text-7xl text-3xl flex justify-center items-center flex-col gap-3 h-screen lg:h-[50vh]">
           <motion.div
             className="flex items-center gap-1 justify-center flex-col"

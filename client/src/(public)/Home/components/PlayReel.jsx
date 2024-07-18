@@ -75,7 +75,7 @@ const PlayReel = () => {
             style={{ x: playX, opacity: textOpacity }}
             className="text-white paragfont uppercase text-5xl lg:text-9xl"
           >
-            * play
+            play
           </motion.h1>
           <motion.div
             style={{ height: scaleHeight, width: scaleWidth }}
@@ -101,7 +101,7 @@ const PlayReel = () => {
             style={{ x: reelX, opacity: textOpacity }}
             className="text-white  paragfont uppercase text-5xl lg:text-9xl"
           >
-            reel *
+            reel
           </motion.h1>
         </div>
       </section>

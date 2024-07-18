@@ -9,6 +9,7 @@ import WhatAreUWaitingFor from './components/WhatAreUWaitingFor';
 import PagesFooter from '@/components/general/PagesFooter/PagesFooter';
 import HomePageLoading from '@/components/general/LoadingPage/HomePageLoading';
 import usePreloadAssets from '@/hooks/usePreloadAssets';
+import CustomCursor from '@/hooks/CostumeCursor';
 
 const Home = () => {
   const assetsToPreload = [
