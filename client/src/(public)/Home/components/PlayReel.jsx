@@ -1,9 +1,12 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useTransform, useScroll, AnimatePresence } from "framer-motion";
 import { Play, Pause, X } from "lucide-react";
 import './PlayReel.css';
+import { useTranslation } from "react-i18next";
 
 const PlayReel = () => {
+  const { t, i18n } = useTranslation();
+  const isArabic = i18n.language === 'ar';
   const targetRef = useRef(null);
   const videoRef = useRef(null);
   const [showVideo, setShowVideo] = useState(false);
@@ -17,10 +20,17 @@ const PlayReel = () => {
 
   const scaleHeight = useTransform(scrollYProgress, [0, 1], [200, window.innerHeight]);
   const scaleWidth = useTransform(scrollYProgress, [0, 1], [400, window.innerWidth]);
-  const playX = useTransform(scrollYProgress, [0, 0.5], ["0%", "-100%"]);
-  const reelX = useTransform(scrollYProgress, [0, 0.5], ["0%", "100%"]);
+  const playX = useTransform(scrollYProgress, [0, 0.5], isArabic ? ["0%", "100%"] : ["0%", "-100%"]);
+  const reelX = useTransform(scrollYProgress, [0, 0.5], isArabic ? ["0%", "-100%"] : ["0%", "100%"]);
   const textOpacity = useTransform(scrollYProgress, [0.3, 0.5], [1, 0]);
   const buttonOpacity = useTransform(scrollYProgress, [0.45, 0.5], [0, 1]);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = true;
+      videoRef.current.playsInline = true;
+    }
+  }, []);
 
   const handlePlayClick = () => {
     setShowVideo(true);
@@ -70,12 +80,13 @@ const PlayReel = () => {
   return (
     <div className="bg-[#aaaa9b]">
       <section ref={targetRef} className="relative h-[300vh]">
-        <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden gap-5 flex-col lg:flex-row">
+        <div
+        className={`sticky top-0 flex h-screen items-center justify-center overflow-hidden gap-5 flex-col xl:flex-row paragfont ${isArabic ? 'arabic-font' : 'paragfont'}`}>
           <motion.h1
             style={{ x: playX, opacity: textOpacity }}
-            className="text-white paragfont uppercase text-5xl lg:text-9xl"
+            className="text-white uppercase text-5xl lg:text-9xl"
           >
-            play
+            {t('PlayText')}
           </motion.h1>
           <motion.div
             style={{ height: scaleHeight, width: scaleWidth }}
@@ -86,6 +97,9 @@ const PlayReel = () => {
               src="https://firebasestorage.googleapis.com/v0/b/elamana-6d79e.appspot.com/o/playreel.mp4?alt=media&token=36879b7d-a837-4089-8bdf-5e7f5dd85ad5"
               className="w-full h-full object-cover rounded-lg"
               muted
+              playsInline
+              autoPlay
+              loop
               onLoadedMetadata={handleLoadedMetadata}
               onTimeUpdate={handleTimeUpdate}
             ></video>
@@ -99,9 +113,9 @@ const PlayReel = () => {
           </motion.div>
           <motion.h1
             style={{ x: reelX, opacity: textOpacity }}
-            className="text-white  paragfont uppercase text-5xl lg:text-9xl"
+            className="text-white  uppercase text-5xl lg:text-9xl"
           >
-            reel
+           {t('ReelText')}
           </motion.h1>
         </div>
       </section>
@@ -127,6 +141,7 @@ const PlayReel = () => {
                 className="max-h-full max-w-full"
                 style={{ objectFit: 'contain' }}
                 autoPlay
+                playsInline
                 onLoadedMetadata={handleLoadedMetadata}
                 onTimeUpdate={handleTimeUpdate}
               ></video>

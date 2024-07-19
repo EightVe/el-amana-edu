@@ -3,8 +3,11 @@ import CircleType from 'circletype';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import 'tailwindcss/tailwind.css';
+import { useTranslation } from 'react-i18next';
 
 const WhatAreUWaitingFor = () => {
+  const { t, i18n } = useTranslation();
+  const isArabic = i18n.language === 'ar';
   const textRef = useRef(null);
   const [hovered, setHovered] = useState(false);
   const buttonRef = useRef(null);
@@ -20,7 +23,8 @@ const WhatAreUWaitingFor = () => {
   const isInViewButton = useInView(buttonRef, { once: true });
 
   return (
-    <div className="h-[100vh] bg-[#aaaa9b] flex justify-center items-center p-6 paragfont py-[70vh]">
+    <div
+    className={`h-[100vh] bg-[#aaaa9b] flex justify-center items-center p-6 paragfont py-[70vh] ${isArabic ? 'arabic-font' : 'paragfont'}`}>
       <div className="flex flex-col items-center justify-center gap-20">
         <div className="flex justify-center items-center flex-col gap-4 text-center">
           <motion.h1
@@ -30,7 +34,7 @@ const WhatAreUWaitingFor = () => {
             transition={{ duration: 0.25 }}
             ref={h1Ref1}
           >
-            What Are you waiting for?
+           {t('whatRUWF')}
           </motion.h1>
           <motion.h1
             className="uppercase text-2xl lg:text-4xl"
@@ -39,7 +43,7 @@ const WhatAreUWaitingFor = () => {
             transition={{ duration: 0.5, delay: 0.25 }}
             ref={h1Ref2}
           >
-            *Don't miss the opportunity*
+            * {t('DMTO')}*
           </motion.h1>
         </div>
         <motion.div

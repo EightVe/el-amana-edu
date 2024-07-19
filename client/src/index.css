@@ -1,37 +1,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Anton+SC&display=swap');
-.paragfont{
-    font-family: "Bona Nova SC", serif;
+@import url('https://fonts.googleapis.com/css2?family=Beiruti:wght@200..900&family=Noto+Sans+Arabic:wght@100..900&display=swap');
+
+.paragfont {
+  font-family: "Bona Nova SC", serif;
 }
-.fontone{
+
+.fontone {
   font-family: "Anton SC", sans-serif;
+}
+
+.arabic-font {
+  font-family: "Noto Sans Arabic", sans-serif !important;
 }
 
 .nav-blur {
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
-
 }
+
 .blur-bg {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px); /* For Safari support */
 }
+
 .headlogo {
   mix-blend-mode: difference !important; /* You can try other blend modes like 'overlay', 'difference', etc. */
   -webkit-font-smoothing: antialiased;
 }
-@tailwind base;
-  @tailwind components;
-  @tailwind utilities;
-*{
-  outline: none;
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  outline: none;
 }
 
-body{
+html[dir="rtl"] body {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="ltr"] body {
+  direction: ltr;
+  text-align: left;
+}
+
+body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 @layer base {
   :root {
     --background: 0 0% 100%;

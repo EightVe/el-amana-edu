@@ -15,7 +15,7 @@ const FrequentlyAskedQuestions = () => {
       <h1 className="text-center paragfont uppercase text-2xl lg:text-6xl pb-8 px-6">
         frequently asked <span className="text-[#aaaa9b]">questions</span>
       </h1>
-      <div className="faq-container bg-white p-6 lg:w-1/3 w-full">
+      <div className="faq-container bg-white p-6 xl:w-1/3 w-full">
         <div
           className="faq-item mb-4 border-b pb-2"
           onMouseEnter={() => setHoveredIndex(0)}

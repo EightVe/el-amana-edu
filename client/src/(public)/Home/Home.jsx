@@ -10,7 +10,6 @@ import PagesFooter from '@/components/general/PagesFooter/PagesFooter';
 import HomePageLoading from '@/components/general/LoadingPage/HomePageLoading';
 import usePreloadAssets from '@/hooks/usePreloadAssets';
 import CustomCursor from '@/hooks/CostumeCursor';
-
 const Home = () => {
   const assetsToPreload = [
     '@/vids/Banner.mp4',
@@ -62,7 +61,7 @@ const Home = () => {
 
   console.log('Rendering Home component');
   return (
-    <div className='bg-[#aaaa9b]'>
+    <div className="bg-[#aaaa9b]">
       <HomeNavigation />
       <Banner />
       <PlayReel />
