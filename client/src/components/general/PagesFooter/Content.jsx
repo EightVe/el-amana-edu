@@ -1,11 +1,12 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 export default function Content() {
     const { t, i18n } = useTranslation();
     const isArabic = i18n.language === 'ar';
   return (
-    <div className='bg-[#aaaa9b] py-8 px-12 h-full w-full flex flex-col justify-end'>
+    <div className='bg-[#aaaa9b] py-8 px-12 h-full w-full flex flex-col lg:justify-between justify-end'>
         <Section1 />
         <Section2 />
     </div>
@@ -42,10 +43,11 @@ const Nav = () => {
         className={`flex shrink-0 gap-20 ${isArabic ? 'arabic-font' : 'paragfont'}`}>
             <div className='flex flex-col gap-2'>
                 <h3 className='mb-2 uppercase text-black font-bold '>{t('footerPages')}</h3>
-                <p className='capitalize  text-base'>{t('NavHome')}</p>
-                <p className='capitalize text-base'>{t('NavAbout')}</p>
-                <p className='capitalize  text-base'>{t('NavUnis')}</p>
-                <p className='capitalize text-base'>{t('NavSignIn')}</p>
+                <Link to="/"><p className='capitalize  text-base'>{t('NavHome')}</p></Link>
+                <Link to="/about"><p className='capitalize  text-base'>{t('NavAbout')}</p></Link>
+                <Link to="/universities"><p className='capitalize  text-base'>{t('NavUnis')}</p></Link>
+                <Link to="/login"><p className='capitalize  text-base'>{t('NavSignIn')}</p></Link>
+
             </div>
             <div className='flex flex-col gap-2'>
                 <h3 className='mb-2 uppercase text-black font-bold'>{t('footerContact')}</h3>

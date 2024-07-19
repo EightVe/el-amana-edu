@@ -18,10 +18,12 @@ import Profile from './(protected)/Profile/Profile';
 import EmailVerify from '@/functions/EmailVerify';
 import { LoadingSpinner } from './lib/LoadingSpinner';
 import NewPassword from './(public)/ForgotPassword/NewPassword';
+import About from './(public)/About/About';
+import Universities from './(public)/Universities/Universities';
 
 const AppContent = () => {
   const location = useLocation();
-  const hideNavigationBarPaths = ['/login', '/signup', '/forgot-password', '/verify-email','/'];
+  const hideNavigationBarPaths = ['/login', '/signup', '/forgot-password', '/verify-email','/','/about','/universities'];
 
   const hideNavigationBar = hideNavigationBarPaths.includes(location.pathname) || 
     matchPath('/reset-password/:token', location.pathname);
@@ -51,6 +53,8 @@ const AppContent = () => {
         } />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Register />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/universities" element={<Universities />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<NewPassword />} />
         <Route path="/settings" element={
