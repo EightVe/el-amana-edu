@@ -1,23 +1,27 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FaChevronDown } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const FrequentlyAskedQuestions = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [hoveredIndex, setHoveredIndex] = useState(null);
-
+  const { t, i18n } = useTranslation();
+  const isArabic = i18n.language === 'ar';
   const toggleFAQ = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
   return (
     <div className="w-full flex items-center justify-center bg-white flex-col lg:h-[150vh] h-screen">
-      <h1 className="text-center paragfont uppercase text-2xl lg:text-6xl pb-8 px-6">
-        frequently asked <span className="text-[#aaaa9b]">questions</span>
+      <h1
+      className={`text-center paragfont uppercase text-2xl lg:text-6xl pb-8 px-6 ${isArabic ? 'arabic-font' : 'paragfont'}`}>
+        {t('faqtitle')} <span className="text-[#aaaa9b]">{t('faqtitle1')}</span>
       </h1>
       <div className="faq-container bg-white p-6 xl:w-1/3 w-full">
         <div
-          className="faq-item mb-4 border-b pb-2"
+  
+          className={`faq-item mb-4 border-b pb-2 ${isArabic ? 'arabic-font' : 'paragfont'}`}
           onMouseEnter={() => setHoveredIndex(0)}
           onMouseLeave={() => setHoveredIndex(null)}
         >
@@ -25,7 +29,7 @@ const FrequentlyAskedQuestions = () => {
             className="faq-question flex justify-between items-center cursor-pointer"
             onClick={() => toggleFAQ(0)}
           >
-            <h3 className="text-xl paragfont pr-3">What are ElAmana Group services?</h3>
+            <h3 className="text-xl pr-3">{t('faq1sttitle')}</h3>
             <motion.div
               initial={false}
               animate={{ rotate: activeIndex === 0 ? 180 : 0 }}
@@ -54,13 +58,13 @@ const FrequentlyAskedQuestions = () => {
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <p className="mt-2 paragfont text-lg">
-              We aim to provide educational consultations based on our long experience in guiding students to choose the major and university that guarantees their success in the future. We carry out the registration process in Turkish universities, including ensuring that the student obtains university admission, and we follow all necessary procedures until he becomes an official university student.
+            <p className="mt-2 text-lg">
+            {t('faq1stanswer')}
             </p>
           </motion.div>
         </div>
         <div
-          className="faq-item mb-4 border-b pb-2"
+           className={`faq-item mb-4 border-b pb-2 ${isArabic ? 'arabic-font' : 'paragfont'}`}
           onMouseEnter={() => setHoveredIndex(1)}
           onMouseLeave={() => setHoveredIndex(null)}
         >
@@ -68,7 +72,7 @@ const FrequentlyAskedQuestions = () => {
             className="faq-question flex justify-between items-center cursor-pointer"
             onClick={() => toggleFAQ(1)}
           >
-            <h3 className="text-xl paragfont pr-3">How can I track my application status?</h3>
+            <h3 className="text-xl pr-3">{t('faq2ndtitle')}</h3>
             <motion.div
               initial={false}
               animate={{ rotate: activeIndex === 1 ? 180 : 0 }}
@@ -97,13 +101,13 @@ const FrequentlyAskedQuestions = () => {
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <p className="mt-2 paragfont text-lg">
-              You can track your application status through our online portal or by contacting our customer service.
+            <p className="mt-2 text-lg">
+            {t('faq2ndanswer')}
             </p>
           </motion.div>
         </div>
         <div
-          className="faq-item mb-4 border-b pb-2"
+ className={`faq-item mb-4 border-b pb-2 ${isArabic ? 'arabic-font' : 'paragfont'}`}
           onMouseEnter={() => setHoveredIndex(2)}
           onMouseLeave={() => setHoveredIndex(null)}
         >
@@ -111,7 +115,7 @@ const FrequentlyAskedQuestions = () => {
             className="faq-question flex justify-between items-center cursor-pointer"
             onClick={() => toggleFAQ(2)}
           >
-            <h3 className="text-xl pr-3 paragfont">What documents are required for registration?</h3>
+            <h3 className="text-xl pr-3"> {t('faq3rdtitle')}</h3>
             <motion.div
               initial={false}
               animate={{ rotate: activeIndex === 2 ? 180 : 0 }}
@@ -140,13 +144,13 @@ const FrequentlyAskedQuestions = () => {
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <p className="mt-2 paragfont text-lg">
-              Required documents include your academic transcripts, identification, and any other relevant certificates. A complete list will be provided upon application.
+            <p className="mt-2 text-lg">
+            {t('faq3rdanswer')}
             </p>
           </motion.div>
         </div>
         <div
-          className="faq-item mb-4 border-b pb-2"
+ className={`faq-item mb-4 border-b pb-2 ${isArabic ? 'arabic-font' : 'paragfont'}`}
           onMouseEnter={() => setHoveredIndex(3)}
           onMouseLeave={() => setHoveredIndex(null)}
         >
@@ -154,7 +158,7 @@ const FrequentlyAskedQuestions = () => {
             className="faq-question flex justify-between items-center cursor-pointer"
             onClick={() => toggleFAQ(3)}
           >
-            <h3 className="text-xl paragfont pr-3">Can I change my major after registration?</h3>
+            <h3 className="text-xl pr-3"> {t('faq4thtitle')}</h3>
             <motion.div
               initial={false}
               animate={{ rotate: activeIndex === 3 ? 180 : 0 }}
@@ -183,13 +187,13 @@ const FrequentlyAskedQuestions = () => {
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <p className="mt-2 paragfont text-lg">
-              Yes, you can change your major after registration. However, certain conditions and deadlines apply. Please consult with our academic advisors for more details.
+            <p className="mt-2 text-lg">
+            {t('faq4thanswer')}
             </p>
           </motion.div>
         </div>
         <div
-          className="faq-item mb-4 border-b pb-2"
+ className={`faq-item mb-4 border-b pb-2 ${isArabic ? 'arabic-font' : 'paragfont'}`}
           onMouseEnter={() => setHoveredIndex(4)}
           onMouseLeave={() => setHoveredIndex(null)}
         >
@@ -197,7 +201,7 @@ const FrequentlyAskedQuestions = () => {
             className="faq-question flex justify-between items-center cursor-pointer"
             onClick={() => toggleFAQ(4)}
           >
-            <h3 className="text-xl paragfont pr-3">What are the tuition fees?</h3>
+            <h3 className="text-xl pr-3">{t('faq5thtitle')}</h3>
             <motion.div
               initial={false}
               animate={{ rotate: activeIndex === 4 ? 180 : 0 }}
@@ -226,13 +230,13 @@ const FrequentlyAskedQuestions = () => {
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <p className="mt-2 paragfont text-lg">
-              Tuition fees vary depending on the university and program. We provide a detailed fee structure during the consultation process.
+            <p className="mt-2 text-lg">
+            {t('faq5thanswer')}
             </p>
           </motion.div>
         </div>
         <div
-          className="faq-item mb-4 border-b pb-2"
+ className={`faq-item mb-4 border-b pb-2 ${isArabic ? 'arabic-font' : 'paragfont'}`}
           onMouseEnter={() => setHoveredIndex(5)}
           onMouseLeave={() => setHoveredIndex(null)}
         >
@@ -240,7 +244,7 @@ const FrequentlyAskedQuestions = () => {
             className="faq-question flex justify-between items-center cursor-pointer"
             onClick={() => toggleFAQ(5)}
           >
-            <h3 className="text-xl paragfont pr-3">Do you offer scholarships?</h3>
+            <h3 className="text-xl pr-3"> {t('faq6thtitle')}</h3>
             <motion.div
               initial={false}
               animate={{ rotate: activeIndex === 5 ? 180 : 0 }}
@@ -269,8 +273,8 @@ const FrequentlyAskedQuestions = () => {
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <p className="mt-2 paragfont text-lg">
-              Yes, we offer scholarships to eligible students based on merit and financial need. Please contact us for more information on available scholarships and how to apply.
+            <p className="mt-2 text-lg">
+            {t('faq6thanswer')}
             </p>
           </motion.div>
         </div>

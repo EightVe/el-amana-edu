@@ -1,6 +1,9 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 
 export default function Content() {
+    const { t, i18n } = useTranslation();
+    const isArabic = i18n.language === 'ar';
   return (
     <div className='bg-[#aaaa9b] py-8 px-12 h-full w-full flex flex-col justify-end'>
         <Section1 />
@@ -18,32 +21,37 @@ const Section1 = () => {
 }
 
 const Section2 = () => {
+    const { t, i18n } = useTranslation();
+    const isArabic = i18n.language === 'ar';
     return (
-        <div className='flex justify-center flex-col items-start'>
-            <h1 className='text-6xl lg:text-9xl leading-[0.8] mt-10 paragfont uppercase'>ELAMANA</h1>
+        <div className={`flex justify-center flex-col items-start ${isArabic ? 'arabic-font' : 'paragfont'}`}>
+            <h1 className='text-6xl lg:text-9xl leading-[0.8] mt-10  uppercase'>{t('NavLogo')}</h1>
             <div>
-            <p className='paragfont'>© copyright el amana for education (2022-2024)</p>
-            <p className='paragfont'>designed & developed by eightve studio</p>
+            <p className=''>© {t('copyright')}</p>
+            <p className=''>{t('footerEightve')}</p>
             </div>
         </div>
     )
 }
 
 const Nav = () => {
+    const { t, i18n } = useTranslation();
+    const isArabic = i18n.language === 'ar';
     return (
-        <div className='flex shrink-0 gap-20'>
+        <div
+        className={`flex shrink-0 gap-20 ${isArabic ? 'arabic-font' : 'paragfont'}`}>
             <div className='flex flex-col gap-2'>
-                <h3 className='mb-2 uppercase text-black font-bold paragfont'>pages</h3>
-                <p className='capitalize paragfont text-base'>Home</p>
-                <p className='capitalize paragfont text-base'>about</p>
-                <p className='capitalize paragfont text-base'>universities</p>
-                <p className='capitalize paragfont text-base'>sign in</p>
+                <h3 className='mb-2 uppercase text-black font-bold '>{t('footerPages')}</h3>
+                <p className='capitalize  text-base'>{t('NavHome')}</p>
+                <p className='capitalize text-base'>{t('NavAbout')}</p>
+                <p className='capitalize  text-base'>{t('NavUnis')}</p>
+                <p className='capitalize text-base'>{t('NavSignIn')}</p>
             </div>
             <div className='flex flex-col gap-2'>
-                <h3 className='mb-2 uppercase text-black font-bold paragfont'>contact</h3>
-                <p className='capitalize paragfont text-base'>whatsapp</p>
-                <p className='capitalize paragfont text-base'>instagram</p>
-                <p className='capitalize paragfont text-base'>facebook</p>
+                <h3 className='mb-2 uppercase text-black font-bold'>{t('footerContact')}</h3>
+                <p className='capitalize text-base'>whatsapp</p>
+                <p className='capitalize text-base'>instagram</p>
+                <p className='capitalize text-base'>facebook</p>
             </div>
         </div>
     )

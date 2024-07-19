@@ -112,24 +112,24 @@ const HomeNavigation = () => {
                   }
                 }}
           
-                className={`md:text-7xl text-3xl paragfont ${i18n.language === 'ar' ? 'arabic-font' : 'paragfont'}`}
+                className={`md:text-5xl text-3xl paragfont ${i18n.language === 'ar' ? 'arabic-font' : 'paragfont'}`}
               >
                 <motion.li variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-                  <span className=' italic md:text-6xl text-xl'>1.</span> <Link to="/" className=' capitalize'>{t('NavHome')}</Link>
+                  <span className=' italic md:text-4xl text-xl'>1.</span> <Link to="/" className=' capitalize'>{t('NavHome')}</Link>
                 </motion.li>
                 <motion.li variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-                  <span className=' italic md:text-6xl text-xl'>2.</span> <Link to="/about" className=' capitalize'>{t('NavAbout')}</Link>
+                  <span className=' italic md:text-4xl text-xl'>2.</span> <Link to="/about" className=' capitalize'>{t('NavAbout')}</Link>
                 </motion.li>
                 <motion.li variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-                  <span className=' italic md:text-6xl text-xl'>3.</span> <Link to="/universities" className=' capitalize'>{t('NavUnis')}</Link>
+                  <span className=' italic md:text-4xl text-xl'>3.</span> <Link to="/universities" className=' capitalize'>{t('NavUnis')}</Link>
                 </motion.li>
                 {user ?
             <motion.li variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-            <span className=' italic md:text-6xl text-xl'>4.</span> <Link to="/settings" className=' capitalize'>{t('NavSettings')}</Link>
+            <span className=' italic md:text-4xl text-xl'>4.</span> <Link to="/settings" className=' capitalize'>{t('NavSettings')}</Link>
           </motion.li>
             :
             <motion.li variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-                  <span className=' italic md:text-6xl text-xl'>4.</span> <Link to="/login" className=' capitalize'>{t('NavSignIn')}</Link>
+                  <span className=' italic md:text-4xl text-xl'>4.</span> <Link to="/login" className=' capitalize'>{t('NavSignIn')}</Link>
                 </motion.li>
           }
                 

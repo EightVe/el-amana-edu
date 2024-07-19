@@ -20,7 +20,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: storedLanguage || "ar", // Use stored language or default to 'en'
+    lng: storedLanguage || "en", // Use stored language or default to 'en'
     interpolation: {
       escapeValue: false 
     },
