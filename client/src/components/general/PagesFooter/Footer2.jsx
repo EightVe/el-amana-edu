@@ -7,8 +7,8 @@ export default function Footer() {
         className='relative h-screen lg:h-[800px]'
         style={{clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)"}}
     >
-        <div className='relative h-[calc(100vh+800px)] -top-[100vh]'>
-            <div className='lg:h-[800px] h-screen sticky top-[calc(100vh-800px)]'>
+        <div className='relative '>
+            <div className='lg:h-[800px] h-screen sticky'>
                 <Content />
             </div>
         </div>

@@ -9,7 +9,6 @@ import WhatAreUWaitingFor from './components/WhatAreUWaitingFor';
 import PagesFooter from '@/components/general/PagesFooter/PagesFooter';
 import HomePageLoading from '@/components/general/LoadingPage/HomePageLoading';
 import usePreloadAssets from '@/hooks/usePreloadAssets';
-import CustomCursor from '@/hooks/CostumeCursor';
 const Home = () => {
   const assetsToPreload = [
     '@/vids/Banner.mp4',
@@ -32,7 +31,6 @@ const Home = () => {
   const [loadedAssetsCount, setLoadedAssetsCount] = useState(0);
 
   const handleComplete = () => {
-    console.log('Animation complete');
     setAnimationComplete(true);
   };
 
@@ -49,7 +47,6 @@ const Home = () => {
   }, [assetsLoaded, assetsToPreload.length]);
 
   if (!animationComplete || !assetsLoaded) {
-    console.log('Loading...');
     return (
       <HomePageLoading
         onComplete={handleComplete}
@@ -59,7 +56,6 @@ const Home = () => {
     );
   }
 
-  console.log('Rendering Home component');
   return (
     <div className="bg-[#aaaa9b]">
       <HomeNavigation />
