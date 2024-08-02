@@ -12,7 +12,7 @@ import Settings from '@/(protected)/Settings/Settings'
 import { AuthContext } from '@/contexts/AuthContext'
 import { Link } from 'react-router-dom'
 import CustomLink from '@/hooks/CustomLink'
-import { ChevronDown, LayoutDashboard, LogOut, SettingsIcon, User } from 'lucide-react'
+import { ChevronDown, FormInputIcon, LayoutDashboard, LogOut, SettingsIcon, User } from 'lucide-react'
 import { Label } from '../ui/label'
 import { Button } from '../ui/button'
   
@@ -33,8 +33,9 @@ const UserAvatar = () => {
   <Label>{user?.lastName}</Label>
   </DropdownMenuLabel>
     <DropdownMenuSeparator />
-    <a href="/profile">    <DropdownMenuItem className="flex items-center gap-1.5 text-sm mb-1"><User className='text-gray-500 h-4 w-4'/>Profile</DropdownMenuItem></a>
+    <a href="/my-applications">    <DropdownMenuItem className="flex items-center gap-1.5 text-sm mb-1"><FormInputIcon className='text-gray-500 h-4 w-4'/>Applications</DropdownMenuItem></a>
     <a href="/settings">    <DropdownMenuItem className="flex items-center gap-1.5 text-sm mb-1"><SettingsIcon className='text-gray-500 h-4 w-4'/>Settings</DropdownMenuItem></a>
+    
     {user.isAdmin && (
        <a href="/dashboard">    <DropdownMenuItem className="flex items-center gap-1.5 text-sm mb-1"><LayoutDashboard className='text-gray-500 h-4 w-4'/>Dashboard</DropdownMenuItem></a>
     )}

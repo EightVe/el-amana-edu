@@ -5,6 +5,7 @@ import PagesFooter from '@/components/general/PagesFooter/PagesFooter';
 import HomePageLoading from '@/components/general/LoadingPage/HomePageLoading';
 import UnisBanner from './components/UnisBanner';
 import UnisDisplay from './components/UnisDisplay';
+import SEO from '@/lib/SEO';
 const Universities = () => {
   const assetsToPreload = [
     './imgs/okan-logo.jpg',
@@ -53,8 +54,16 @@ const Universities = () => {
   }
   return (
     <>
+                    <SEO
+
+title="الأمانة - الجامعت"
+description=" اضمن مستقبلك معنا الان و احصل على فرصتك الدراسة في الجامعات التركية"
+name=" name."
+type="article"
+/>
     <div className="bg-[#aaaa9b]"
    >
+
       <HomeNavigation />
      <UnisBanner />
      <UnisDisplay />

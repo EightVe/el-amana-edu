@@ -6,6 +6,7 @@ import HomePageLoading from '@/components/general/LoadingPage/HomePageLoading';
 import AboutBanner from './components/AboutBanner';
 import OurTeam from './components/OurTeam';
 import './About.css'
+import SEO from '@/lib/SEO';
 const About = () => {
   const assetsToPreload = [
     './imgs/noufpic.jpg',
@@ -44,6 +45,13 @@ const About = () => {
     <>
     <div className="bg-[#aaaa9b]"
    >
+                <SEO
+
+        title="الأمانة - من نحن"
+        description=" اضمن مستقبلك معنا الان و احصل على فرصتك الدراسة في الجامعات التركية"
+        name=" name."
+        type="article"
+      />
       <HomeNavigation />
      <AboutBanner />
      <OurTeam />

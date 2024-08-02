@@ -35,10 +35,12 @@ import IsikUniMain from './(public)/UniversitiesPages/IsikUniversity/IsikUniMain
 import MedipolUniMain from './(public)/UniversitiesPages/MedipolUniversity/MedipolUniMain';
 import IstanbulKentUniMain from './(public)/UniversitiesPages/IstanbulKentUniversity/IstanbulKentUniMain';
 import FenerbahceUniMain from './(public)/UniversitiesPages/FenerbahceUniversity/FenerbahceUniMain';
+import Apply from './(protected)/Apply/Apply';
+import TrackAppStatus from './(public)/TrackStatus/TrackAppStatus';
 
 const AppContent = () => {
   const location = useLocation();
-  const hideNavigationBarPaths = ['/login', '/signup', '/forgot-password', '/verify-email','/','/about','/universities','/nisantasi-universitesi','/okan-universitesi','/biruni-universitesi','/beykoz-universitesi','/beykent-universitesi','/bahcesehir-universitesi','/atlas-universitesi','/altinbas-universitesi','/gelisim-universitesi','/istinye-universitesi','/isik-universitesi','/medipol-universitesi','/kent-universitesi','/fenerbahce-universitesi'];
+  const hideNavigationBarPaths = ['/login', '/signup', '/forgot-password','/application-status', '/verify-email','/apply','/','/about','/universities','/nisantasi-universitesi','/okan-universitesi','/biruni-universitesi','/beykoz-universitesi','/beykent-universitesi','/bahcesehir-universitesi','/atlas-universitesi','/altinbas-universitesi','/gelisim-universitesi','/istinye-universitesi','/isik-universitesi','/medipol-universitesi','/kent-universitesi','/fenerbahce-universitesi'];
 
   const hideNavigationBar = hideNavigationBarPaths.includes(location.pathname) || 
     matchPath('/reset-password/:token', location.pathname);
@@ -61,14 +63,10 @@ const AppContent = () => {
       {!hideNavigationBar && <NavigationBar />}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/profile" element={
-          <ProtectedRoute>
-            <Profile />
-          </ProtectedRoute>
-        } />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Register />} />
         <Route path="/about" element={<About />} />
+        <Route path="/application-status" element={<TrackAppStatus />} />
         <Route path="/universities" element={<Universities />} />
         <Route path="/nisantasi-universitesi" element={<NisantasiUniMain />} />
         <Route path="/okan-universitesi" element={<OkanUniMain />} />
@@ -89,6 +87,11 @@ const AppContent = () => {
         <Route path="/settings" element={
           <ProtectedRoute>
             <Settings />
+          </ProtectedRoute>
+        } />
+                <Route path="/apply" element={
+          <ProtectedRoute>
+            <Apply />
           </ProtectedRoute>
         } />
         <Route path="/settings/profile" element={

@@ -26,17 +26,14 @@ const AboutBanner = () => {
       ref={ref}
       
     >
-      <motion.h1
+      <h1
         className='text-4xl lg:text-5xl relative z-10'
-        initial="hidden"
-        animate={isInView ? 'visible' : 'hidden'}
-        variants={variants}
         style={{
           whiteSpace: 'wrap',
         }}
       >
         {t('about_text')}
-      </motion.h1>
+      </h1>
     </div>
   );
 };

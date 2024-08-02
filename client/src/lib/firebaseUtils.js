@@ -1,4 +1,4 @@
-// utils/firebaseUtils.js
+// lib/firebaseUtils.js
 import { storage } from '@/lib/firebase.js';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 

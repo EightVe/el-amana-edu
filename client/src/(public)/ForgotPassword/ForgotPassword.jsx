@@ -46,8 +46,8 @@ const ForgotPassword = () => {
   return (
     <>
       <SEO
-        title="Eightve | Forgot Password"
-        description=" friendly page for learning React Helmet."
+        title="ElAmana | Forgot Password"
+        description=""
         name="name."
         type="article"
       />

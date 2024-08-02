@@ -9,6 +9,7 @@ import WhatAreUWaitingFor from './components/WhatAreUWaitingFor';
 import PagesFooter from '@/components/general/PagesFooter/PagesFooter';
 import HomePageLoading from '@/components/general/LoadingPage/HomePageLoading';
 import usePreloadAssets from '@/hooks/usePreloadAssets';
+import SEO from '@/lib/SEO';
 const Home = () => {
   const assetsToPreload = [
     '@/vids/Banner.mp4',
@@ -58,6 +59,12 @@ const Home = () => {
 
   return (
     <div className="bg-[#aaaa9b]">
+            <SEO
+        title="الأمانة - الصفحة الرئيسية"
+        description=" اضمن مستقبلك معنا الان و احصل على فرصتك الدراسة في الجامعات التركية"
+        name=" name."
+        type="article"
+      />
       <HomeNavigation />
       <Banner />
       <PlayReel />

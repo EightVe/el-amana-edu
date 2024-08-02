@@ -52,7 +52,7 @@ const WhatAreUWaitingFor = () => {
           initial={{ opacity: 0 }}
           ref={buttonRef}
         >
-          <Link to="/apply">
+          <a href="/apply">
             <motion.div
               className="relative w-40 h-40 rounded-full border border-black flex items-center justify-center overflow-hidden"
               onHoverStart={() => setHovered(true)}
@@ -80,7 +80,7 @@ const WhatAreUWaitingFor = () => {
                 &#x2192; {/* Right arrow symbol */}
               </motion.div>
             </motion.div>
-          </Link>
+          </a>
         </motion.div>
       </div>
     </div>

@@ -11,8 +11,8 @@ const Login = () => {
   return (
     <>
       <SEO
-        title="Eightve | Log In"
-        description=" friendly page for learning React Helmet."
+        title="الأمانة - تسجيل الدخول"
+        description=" اضمن مستقبلك معنا الان و احصل على فرصتك الدراسة في الجامعات التركية"
         name=" name."
         type="article"
       />

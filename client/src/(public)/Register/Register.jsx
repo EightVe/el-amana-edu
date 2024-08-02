@@ -10,9 +10,9 @@ import WebLogo from '@/imgs/jsx/WebLogo';
 const Register = () => {
   return (
     <>
-      <SEO
-        title="Eightve | Sign Up"
-        description=" friendly page for learning React Helmet."
+            <SEO
+        title="الأمانة - انشئ حسابك"
+        description=" اضمن مستقبلك معنا الان و احصل على فرصتك الدراسة في الجامعات التركية"
         name=" name."
         type="article"
       />

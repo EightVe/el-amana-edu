@@ -25,17 +25,14 @@ const UnisBanner = () => {
       ref={ref}
       
     >
-      <motion.h1
+      <h1
         className='text-6xl lg:text-8xl relative z-10'
-        initial="hidden"
-        animate={isInView ? 'visible' : 'hidden'}
-        variants={variants}
         style={{
           whiteSpace: 'wrap',
         }}
       >
         {t('UniversitiesTitle')}
-      </motion.h1>
+      </h1>
     </div>
   );
 };

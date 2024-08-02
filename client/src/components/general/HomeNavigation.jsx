@@ -9,6 +9,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ChangeLanguage from '@/functions/ChangeLanguage';
 import { useTranslation } from 'react-i18next';
+import UserAvatar from '../avatar/UserAvatar';
 gsap.registerPlugin(ScrollTrigger);
 
 const HomeNavigation = () => {
@@ -65,11 +66,12 @@ const HomeNavigation = () => {
             <Button variant="transparent" className="flex items-center gap-1"><Link to="/">{t('NavHome')}</Link></Button>
             <Button variant="transparent" className="flex items-center gap-1"><Link to="/about">{t('NavAbout')}</Link></Button>
             <Button variant="transparent" className="flex items-center gap-1"><Link to="/universities">{t('NavUnis')}</Link></Button>
+            <Button variant="transparent" className="flex items-center gap-1"><Link to="/application-status">{t('navtrack')}</Link></Button>
             <div>|</div>
           </div>
           {user ?
             <div className='h-10 pl-4 py-2'>
-              <NewNavAvatar/>
+              <UserAvatar />
             </div>
             :
             <Link to="/login"><Button variant="transparent" className="flex items-center gap-1"><User className='h-4 w-4'/>{t('NavSignIn')}</Button></Link> 
@@ -123,31 +125,21 @@ const HomeNavigation = () => {
                 <motion.li variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
                   <span className=' italic md:text-4xl text-xl'>3.</span> <Link to="/universities" className=' capitalize'>{t('NavUnis')}</Link>
                 </motion.li>
+                <motion.li variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
+                  <span className=' italic md:text-4xl text-xl'>4.</span> <Link to="/application-status" className=' capitalize'>{t('navtrack')}</Link>
+                </motion.li>
                 {user ?
             <motion.li variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-            <span className=' italic md:text-4xl text-xl'>4.</span> <Link to="/settings" className=' capitalize'>{t('NavSettings')}</Link>
+            <span className=' italic md:text-4xl text-xl'>5.</span> <Link to="/settings" className=' capitalize'>{t('NavSettings')}</Link>
           </motion.li>
             :
             <motion.li variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-                  <span className=' italic md:text-4xl text-xl'>4.</span> <Link to="/login" className=' capitalize'>{t('NavSignIn')}</Link>
+                  <span className=' italic md:text-4xl text-xl'>5.</span> <Link to="/login" className=' capitalize'>{t('NavSignIn')}</Link>
                 </motion.li>
           }
                 
               </motion.ul>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.2 }}
-                className='flex justify-between items-start w-full flex-col-reverse md:flex-row'
-              >
-                <ul className='flex gap-2 items-center text-lg md:text-xl flex-wrap'>
-                  <li><Link to="/" className='paragfont uppercase'>Whatsapp</Link></li>
-                  <div className='h-1 w-1 bg-white rounded-full'></div>
-                  <li><Link to="/" className='paragfont uppercase'>Instagram</Link></li>
-                  <div className='h-1 w-1 bg-white rounded-full'></div>
-                  <li><Link to="/" className='paragfont uppercase'>Facebook</Link></li>
-                </ul>
-              </motion.div>
+              <div></div>
             </div>
           </motion.div>
         )}

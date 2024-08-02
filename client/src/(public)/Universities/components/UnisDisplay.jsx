@@ -122,7 +122,7 @@ const HorizontalScrollCarousel = () => {
     target: targetRef,
   });
 
-  const x = useTransform(scrollYProgress, [0, 1.2], isArabic ? ["95%", "0%"] : ["1%", "-95%"]);
+  const x = useTransform(scrollYProgress, [0, 1], isArabic ? ["95%", "0%"] : ["1%", "-95%"]);
 
   return (
     <section ref={targetRef} className="relative h-[2000vh]">

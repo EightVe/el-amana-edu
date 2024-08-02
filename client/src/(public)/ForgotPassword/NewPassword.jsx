@@ -43,8 +43,8 @@ const NewPassword = () => {
   return (
     <>
       <SEO
-        title="Eightve | Reset Password"
-        description=" friendly page for learning React Helmet."
+        title="ElAmana | Reset Password"
+        description=""
         name="name."
         type="article"
       />
