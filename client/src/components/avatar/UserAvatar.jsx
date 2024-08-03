@@ -33,7 +33,6 @@ const UserAvatar = () => {
   <Label>{user?.lastName}</Label>
   </DropdownMenuLabel>
     <DropdownMenuSeparator />
-    <a href="/my-applications">    <DropdownMenuItem className="flex items-center gap-1.5 text-sm mb-1"><FormInputIcon className='text-gray-500 h-4 w-4'/>Applications</DropdownMenuItem></a>
     <a href="/settings">    <DropdownMenuItem className="flex items-center gap-1.5 text-sm mb-1"><SettingsIcon className='text-gray-500 h-4 w-4'/>Settings</DropdownMenuItem></a>
     
     {user.isAdmin && (

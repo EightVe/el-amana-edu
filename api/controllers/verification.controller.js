@@ -35,9 +35,6 @@ export const sendOTP = async (req, res) => {
   };
 
   try {
-    await transporter.sendMail(mailOptions);
-
-    // Save OTP to database
     await OTP.create({ userId, otp });
 
     res.status(200).json({ message: 'OTP sent to email successfully.' });
@@ -78,7 +75,7 @@ const generatePasswordResetToken = () => {
 };
 const generateResetEmailTemplate = (url) => {
   return `
-  <!DOCTYPE html>
+ <!DOCTYPE html>
   <html lang="en">
     <head>
       <meta charset="UTF-8" />
@@ -117,11 +114,7 @@ const generateResetEmailTemplate = (url) => {
             <tbody>
               <tr style="height: 0;">
                 <td>
-                  <img
-                    alt=""
-                    src="https://i.ibb.co/hYXP1wD/cclogo.png"
-                    height="40px"
-                  />
+                  <h1>ELAMANA</h1>
                 </td>
               </tr>
             </tbody>
@@ -200,7 +193,7 @@ const generateResetEmailTemplate = (url) => {
           "
         >
           <p style="margin: 0; margin-top: 16px; color: #434343;">
-            Copyright © 2024 Clean Colab. All rights reserved.
+            Copyright © Elamanaforeducation.com All rights reserved.
           </p>
         </footer>
       </div>

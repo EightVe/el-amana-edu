@@ -51,9 +51,8 @@ const Nav = () => {
             </div>
             <div className='flex flex-col gap-2'>
                 <h3 className='mb-2 uppercase text-black font-bold'>{t('footerContact')}</h3>
-                <p className='capitalize text-base'>whatsapp</p>
-                <p className='capitalize text-base'>instagram</p>
-                <p className='capitalize text-base'>facebook</p>
+                <a href="https://wa.me/+905528812754">                <p className='capitalize text-base'>Whatsapp</p></a>
+                <a href="https://www.instagram.com/el_amanaforeducation?igsh=MTdnOXZuODNoNHdmaw%3D%3D&utm_source=qr">    <p className='capitalize text-base'>instagram</p></a>
             </div>
         </div>
     )

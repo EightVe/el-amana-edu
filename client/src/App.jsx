@@ -37,10 +37,12 @@ import IstanbulKentUniMain from './(public)/UniversitiesPages/IstanbulKentUniver
 import FenerbahceUniMain from './(public)/UniversitiesPages/FenerbahceUniversity/FenerbahceUniMain';
 import Apply from './(protected)/Apply/Apply';
 import TrackAppStatus from './(public)/TrackStatus/TrackAppStatus';
+import DashobardUsers from './(protected)/Dashboard/DashobardUsers';
+import DashboardApplications from './(protected)/Dashboard/DashboardApplications';
 
 const AppContent = () => {
   const location = useLocation();
-  const hideNavigationBarPaths = ['/login', '/signup', '/forgot-password','/application-status', '/verify-email','/apply','/','/about','/universities','/nisantasi-universitesi','/okan-universitesi','/biruni-universitesi','/beykoz-universitesi','/beykent-universitesi','/bahcesehir-universitesi','/atlas-universitesi','/altinbas-universitesi','/gelisim-universitesi','/istinye-universitesi','/isik-universitesi','/medipol-universitesi','/kent-universitesi','/fenerbahce-universitesi'];
+  const hideNavigationBarPaths = ['/login', '/signup', '/forgot-password','/application-status','/dashboard','/dashboard/users','/dashboard/applications', '/verify-email','/apply','/','/about','/universities','/nisantasi-universitesi','/okan-universitesi','/biruni-universitesi','/beykoz-universitesi','/beykent-universitesi','/bahcesehir-universitesi','/atlas-universitesi','/altinbas-universitesi','/gelisim-universitesi','/istinye-universitesi','/isik-universitesi','/medipol-universitesi','/kent-universitesi','/fenerbahce-universitesi'];
 
   const hideNavigationBar = hideNavigationBarPaths.includes(location.pathname) || 
     matchPath('/reset-password/:token', location.pathname);
@@ -112,6 +114,16 @@ const AppContent = () => {
         <Route path="/dashboard" element={
           <AdminRoute>
             <Dashboard />
+          </AdminRoute>
+        } />
+                <Route path="/dashboard/users" element={
+          <AdminRoute>
+            <DashobardUsers />
+          </AdminRoute>
+        } />
+                        <Route path="/dashboard/applications" element={
+          <AdminRoute>
+            <DashboardApplications />
           </AdminRoute>
         } />
       </Routes>

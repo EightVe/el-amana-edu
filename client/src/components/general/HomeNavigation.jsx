@@ -64,9 +64,9 @@ const HomeNavigation = () => {
         <div className={`hidden items-center lg:flex navlinks`}>
           <div className='flex items-center'>
             <Button variant="transparent" className="flex items-center gap-1"><Link to="/">{t('NavHome')}</Link></Button>
-            <Button variant="transparent" className="flex items-center gap-1"><Link to="/about">{t('NavAbout')}</Link></Button>
-            <Button variant="transparent" className="flex items-center gap-1"><Link to="/universities">{t('NavUnis')}</Link></Button>
-            <Button variant="transparent" className="flex items-center gap-1"><Link to="/application-status">{t('navtrack')}</Link></Button>
+            <Button variant="transparent" className="flex items-center gap-1"><a href="/about">{t('NavAbout')}</a></Button>
+            <Button variant="transparent" className="flex items-center gap-1"><a href="/universities">{t('NavUnis')}</a></Button>
+            <Button variant="transparent" className="flex items-center gap-1"><a href="/application-status">{t('navtrack')}</a></Button>
             <div>|</div>
           </div>
           {user ?
@@ -120,21 +120,21 @@ const HomeNavigation = () => {
                   <span className=' italic md:text-4xl text-xl'>1.</span> <Link to="/" className=' capitalize'>{t('NavHome')}</Link>
                 </motion.li>
                 <motion.li variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-                  <span className=' italic md:text-4xl text-xl'>2.</span> <Link to="/about" className=' capitalize'>{t('NavAbout')}</Link>
+                  <span className=' italic md:text-4xl text-xl'>2.</span> <a href="/about" className=' capitalize'>{t('NavAbout')}</a>
                 </motion.li>
                 <motion.li variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-                  <span className=' italic md:text-4xl text-xl'>3.</span> <Link to="/universities" className=' capitalize'>{t('NavUnis')}</Link>
+                  <span className=' italic md:text-4xl text-xl'>3.</span> <a href="/universities" className=' capitalize'>{t('NavUnis')}</a>
                 </motion.li>
                 <motion.li variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-                  <span className=' italic md:text-4xl text-xl'>4.</span> <Link to="/application-status" className=' capitalize'>{t('navtrack')}</Link>
+                  <span className=' italic md:text-4xl text-xl'>4.</span> <a href="/application-status" className=' capitalize'>{t('navtrack')}</a>
                 </motion.li>
                 {user ?
             <motion.li variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-            <span className=' italic md:text-4xl text-xl'>5.</span> <Link to="/settings" className=' capitalize'>{t('NavSettings')}</Link>
+            <span className=' italic md:text-4xl text-xl'>5.</span> <a href="/settings" className=' capitalize'>{t('NavSettings')}</a>
           </motion.li>
             :
             <motion.li variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-                  <span className=' italic md:text-4xl text-xl'>5.</span> <Link to="/login" className=' capitalize'>{t('NavSignIn')}</Link>
+                  <span className=' italic md:text-4xl text-xl'>5.</span> <a href="/login" className=' capitalize'>{t('NavSignIn')}</a>
                 </motion.li>
           }
                 

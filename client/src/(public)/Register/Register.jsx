@@ -53,7 +53,7 @@ const Register = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.6 }}
           >
-            <p className='text-gray-600 text-sm'>©2024 Eightve LTD. All Rights Reserved.</p>
+            <p className='text-gray-600 text-sm'>©2024 ElAmana. All Rights Reserved.</p>
           </motion.div>
         </div>
         <div 
