@@ -29,7 +29,8 @@ const Section2 = () => {
             <h1 className='text-6xl lg:text-9xl leading-[0.8] mt-10  uppercase'>{t('NavLogo')}</h1>
             <div>
             <p className=''>© {t('copyright')}</p>
-            <p className=''>{t('footerEightve')}</p>
+            
+            <Link to="http://studio.eightve.com/" className='hover:underline'><p className=''>{t('footerEightve')}</p></Link>
             </div>
         </div>
     )

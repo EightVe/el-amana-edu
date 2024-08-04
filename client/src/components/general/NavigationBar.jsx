@@ -20,8 +20,8 @@ const NavigationBar = () => {
         <nav className="inset-x-0 top-0 z-50 bg-white shadow-sm dark:bg-gray-950/90">
             <div className="w-full max-w-full mx-auto px-4 ">
                 <div className="flex justify-between h-14 items-center">
-                    <Link to="/" className="flex items-center">
-                    logoeeeeeeeee
+                    <Link to="/" className="flex items-center font-bold">
+                    ELAMANA
                     </Link>
                     <div className="hidden md:flex gap-4">
                         <Link
@@ -31,22 +31,16 @@ const NavigationBar = () => {
                             Home
                         </Link>
                         <Link
-                            to="#"
+                            to="/universities"
                             className="font-medium flex items-center text-sm transition-colors hover:underline"
                         >
                             Universities
                         </Link>
                         <Link
-                            to="#"
+                            to="/application-status"
                             className="font-medium flex items-center text-sm transition-colors hover:underline"
                         >
                             Application Status
-                        </Link>
-                        <Link
-                            to="#"
-                            className="font-medium flex items-center text-sm transition-colors hover:underline"
-                        >
-                            Contact
                         </Link>
                     </div>
                     <div className="flex items-center gap-4">
@@ -93,45 +87,24 @@ const NavigationBar = () => {
                                 <X className="w-8 h-10" />
                             </button>
                            </div>
-                            <Link
-                                to="/"
-                                className="mt-4 font-medium text-sm transition-colors hover:underline"
-                                onClick={toggleMenu}
-                            >
-                                Home
-                            </Link>
-                            <Link
-                                to="#"
-                                className="mt-4 font-medium text-sm transition-colors hover:underline"
-                                onClick={toggleMenu}
-                            >
-                                About
-                            </Link>
-                            <Link
-                                to="#"
-                                className="mt-4 font-medium text-sm transition-colors hover:underline"
-                                onClick={toggleMenu}
-                            >
-                                Services
-                            </Link>
-                            <Link
-                                to="#"
-                                className="mt-4 font-medium text-sm transition-colors hover:underline"
-                                onClick={toggleMenu}
-                            >
-                                Contact
-                            </Link>
-                            {loading ? (
-                                <LoadingSpinner className="h-3 w-3 animate-spin mt-4" />
-                            ) : user ? (
-                                <UserAvatar className="mt-4" />
-                            ) : (
-                                <Link to="/login" onClick={toggleMenu}>
-                                    <Button variant="" size="sm" className="mt-4">
-                                        Sign In
-                                    </Button>
-                                </Link>
-                            )}
+                           <Link
+                            to="/"
+                            className="font-medium flex items-center text-sm transition-colors hover:underline"
+                        >
+                            Home
+                        </Link>
+                        <Link
+                            to="/universities"
+                            className="font-medium flex items-center text-sm transition-colors hover:underline"
+                        >
+                            Universities
+                        </Link>
+                        <Link
+                            to="/application-status"
+                            className="font-medium flex items-center text-sm transition-colors hover:underline"
+                        >
+                            Application Status
+                        </Link>
                         </div>
                     </motion.div>
                 )}

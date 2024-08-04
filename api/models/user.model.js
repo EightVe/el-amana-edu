@@ -42,6 +42,26 @@ const userSchema = new mongoose.Schema(
         type: Boolean,
         default : false,
       },
+      CanUpdateApplication : {
+        type: Boolean,
+        default : false,
+      },
+      CanAccessUsers : {
+        type: Boolean,
+        default : false,
+      },
+      CanViewUsersDetails : {
+        type: Boolean,
+        default : false,
+      },
+      CanChangeUsersRoles : {
+        type: Boolean,
+        default : false,
+      },
+      CanViewApplication : {
+        type: Boolean,
+        default : false,
+      },
     avatar:{
       type: String,
       default: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"

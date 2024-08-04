@@ -304,6 +304,22 @@ const Apply = () => {
                                     <SelectItem value="Nisantasi University">Nisantasi University</SelectItem>
                                     <SelectItem value="Atlas University">Atlas University</SelectItem>
                                     <SelectItem value="Medipol University">Medipol University</SelectItem>
+
+                                    <SelectItem value="Gelisim University">Gelisim University</SelectItem>
+                                    <SelectItem value="Biruni University">Biruni University</SelectItem>
+                                    <SelectItem value="Istinye University">Istinye University</SelectItem>
+
+                                    <SelectItem value="Bahcesehir University">Bahcesehir University</SelectItem>
+                                    <SelectItem value="Isik University">Isik University</SelectItem>
+                                    <SelectItem value="Altinbas University">Altinbas University</SelectItem>
+
+                                    <SelectItem value="Fenerbahce University">Fenerbahce University</SelectItem>
+                                    <SelectItem value="Okan University">Okan University</SelectItem>
+                                    <SelectItem value="Istanbul Kent University">Istanbul Kent University</SelectItem>
+
+                                    <SelectItem value="Beykent University">Beykent University</SelectItem>
+                                    <SelectItem value="Beykoz University">Beykoz University</SelectItem>
+
                                 </SelectContent>
                             </Select>
                         </motion.div>

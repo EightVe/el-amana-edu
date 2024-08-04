@@ -115,3 +115,46 @@ export const deleteAccount = async (req, res) => {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
+
+export const getAllUsers = async (req, res) => {
+  if (!req.user.isAdmin) {
+    return res.status(403).json({ message: 'Forbidden' });
+  }
+  
+  try {
+    const users = await User.find().select('-password'); // Exclude the password field
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+
+export const updateUserRolesAndPermissions = async (req, res) => {
+  const { userId, isAdmin, permissions } = req.body;
+
+  try {
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    if (typeof isAdmin !== 'undefined') {
+      user.isAdmin = isAdmin;
+    }
+
+    if (permissions) {
+      for (const key in permissions) {
+        if (permissions.hasOwnProperty(key) && user[key] !== undefined) {
+          user[key] = permissions[key];
+        }
+      }
+    }
+
+    await user.save();
+
+    res.status(200).json({ message: 'User roles and permissions updated successfully', user });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
